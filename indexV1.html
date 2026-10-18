@@ -1,0 +1,486 @@
+<title>Forma</title>
+<meta name="description" content="Vitamins, protein and daily rituals. Clean formulas, honest labels, free UK delivery over £40.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#F6F1EA;--bg2:#EDE4D8;--card:#FBF8F3;--fg:#231F1A;--mid:#6E655A;--light:#A39888;--border:#E0D6C8;
+  --clay:#B5562F;--olive:#5E6B3A;--ink:#231F1A;--on-ink:#F6F1EA;
+  --display:'Bricolage Grotesque','Arial Black',system-ui,sans-serif;--body:'Manrope',system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1A1714;--bg2:#24201B;--card:#201C18;--fg:#F1EAE0;--mid:#A89D8E;--light:#6B6257;--border:#332D26;--clay:#D9744A;--olive:#93A262;--ink:#F1EAE0;--on-ink:#1A1714;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1A1714;--bg2:#24201B;--card:#201C18;--fg:#F1EAE0;--mid:#A89D8E;--light:#6B6257;--border:#332D26;--clay:#D9744A;--olive:#93A262;--ink:#F1EAE0;--on-ink:#1A1714;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.55;margin:0;overflow-x:hidden}
+button{font-family:inherit;color:inherit}
+.wrap{padding-inline:clamp(16px,4vw,48px)}
+.label{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+
+/* announce + nav */
+.announce{background:var(--ink);color:var(--on-ink);text-align:center;padding:9px 16px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:200;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.nav-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:64px}
+.nav-links{display:flex;gap:28px}
+.nav-links button,.nav-r button{background:none;border:0;cursor:pointer;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:0}
+.nav-links button:hover{color:var(--clay)}
+.logo{font-family:var(--display);font-weight:800;font-size:30px;letter-spacing:-.04em;text-decoration:none;color:var(--fg);line-height:1}
+.logo i{font-style:normal;color:var(--clay)}
+.nav-r{display:flex;justify-content:flex-end;gap:10px;align-items:center}
+.bag-n{display:inline-grid;place-items:center;min-width:20px;height:20px;border-radius:99px;background:var(--clay);color:#fff;font-size:10px;margin-left:6px;transition:transform .2s}
+.bag-n.bump{transform:scale(1.35)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:99px;padding:15px 30px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;border:1.5px solid var(--ink);text-decoration:none;transition:all .2s}
+.btn-dark{background:var(--ink);color:var(--on-ink)}
+.btn-dark:hover{background:var(--clay);border-color:var(--clay);color:#fff}
+.btn-ghost{background:transparent;color:var(--fg)}
+.btn-ghost:hover{background:var(--ink);color:var(--on-ink)}
+
+/* packshot (CSS pouch) */
+.shot{position:relative;aspect-ratio:1;border-radius:20px;overflow:hidden;display:grid;place-items:center;background:var(--pc)}
+.shot::after{content:"";position:absolute;inset:auto -20% -40% -20%;height:60%;background:radial-gradient(closest-side,rgba(0,0,0,.14),transparent);}
+.pouch{position:relative;z-index:1;width:46%;aspect-ratio:3/4.2;border-radius:10px 10px 14px 14px;background:var(--pk);box-shadow:0 18px 30px -12px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.12);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:12% 8% 10%;color:var(--pt);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.pouch::before{content:"";position:absolute;top:6%;left:10%;right:10%;height:2px;background:currentColor;opacity:.25}
+.pouch.tub{width:44%;aspect-ratio:1/1.15;border-radius:14px 14px 18px 18px}
+.pouch.tub::before{top:0;left:0;right:0;height:16%;border-radius:14px 14px 0 0;background:rgba(0,0,0,.18);opacity:1}
+.pouch b{font-family:var(--display);font-weight:800;font-size:clamp(11px,1.5vw,17px);letter-spacing:-.03em}
+.pouch span{font-family:var(--display);font-weight:700;font-size:clamp(9px,1.1vw,13px);text-align:center;line-height:1.05;letter-spacing:-.01em}
+.pouch small{font-size:clamp(6px,.65vw,8px);font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.card:hover .pouch,.hero-shots .shot:hover .pouch{transform:translateY(-6px) rotate(-2deg)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,4vw,56px);align-items:center;padding-block:clamp(40px,7vw,96px)}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(52px,8.5vw,124px);line-height:.88;letter-spacing:-.05em;margin:18px 0 26px;text-wrap:balance}
+.hero h1 em{font-style:normal;color:var(--clay)}
+.hero p{font-size:17px;color:var(--mid);max-width:430px;margin:0 0 32px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hero-shots{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.hero-shots .shot:first-child{grid-row:span 2;aspect-ratio:auto}
+.hero-shots .shot:first-child .pouch{width:52%}
+.hero-meta{display:flex;gap:28px;margin-top:40px;flex-wrap:wrap}
+.hero-meta div{font-size:12px;color:var(--mid)}
+.hero-meta strong{display:block;font-family:var(--display);font-size:26px;color:var(--fg);letter-spacing:-.03em}
+
+/* marquee */
+.marquee{background:var(--clay);color:#fff;overflow:hidden;padding-block:16px;transform:rotate(-1deg);margin-block:8px 40px;width:104%;margin-left:-2%}
+.marquee-t{display:flex;width:max-content;animation:mq 30s linear infinite}
+.marquee-t span{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:-.02em;padding-inline:22px;white-space:nowrap}
+.marquee-t span:nth-child(even){opacity:.55}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.marquee-t{animation:none}}
+
+/* categories */
+.sec{padding-block:clamp(40px,6vw,80px)}
+.sec-h{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:28px;flex-wrap:wrap}
+.sec-h h2{font-family:var(--display);font-weight:800;font-size:clamp(34px,4.6vw,60px);letter-spacing:-.045em;line-height:.95;margin:8px 0 0}
+.cats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.cat{border:0;cursor:pointer;border-radius:18px;padding:22px 18px;text-align:left;background:var(--cc);color:var(--ct);min-height:132px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .25s}
+.cat:hover{transform:translateY(-4px)}
+.cat b{font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.03em;line-height:1.05}
+.cat small{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
+
+/* filter + grid */
+.filters{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;margin-bottom:28px}
+.filters::-webkit-scrollbar{display:none}
+.fb{flex-shrink:0;border:1.5px solid var(--border);background:transparent;border-radius:99px;padding:9px 18px;font-size:12px;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:all .15s}
+.fb:hover{border-color:var(--fg)}
+.fb.on{background:var(--ink);border-color:var(--ink);color:var(--on-ink)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px 20px}
+.card{cursor:pointer;min-width:0}
+.card .shot{border-radius:18px}
+.tag{position:absolute;top:12px;left:12px;z-index:2;background:var(--card);color:var(--fg);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border-radius:99px}
+.card-b{padding-top:14px}
+.card-c{color:var(--light);margin-bottom:4px}
+.card-n{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-.03em;line-height:1.1}
+.card-d{font-size:13px;color:var(--mid);margin:6px 0 12px}
+.card-r{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.price{font-weight:700;font-variant-numeric:tabular-nums}
+.price s{color:var(--light);font-weight:500;margin-left:6px;font-size:13px}
+.add{border:1.5px solid var(--ink);background:transparent;border-radius:99px;padding:8px 16px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .15s}
+.add:hover,.add.added{background:var(--ink);color:var(--on-ink)}
+
+/* ritual band */
+.band{background:var(--olive);color:#F6F1EA;border-radius:28px;padding:clamp(32px,6vw,80px);display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.band h2{font-family:var(--display);font-weight:800;font-size:clamp(40px,5.5vw,76px);line-height:.9;letter-spacing:-.05em;margin:12px 0 22px}
+.band p{color:rgba(246,241,234,.75);max-width:440px;margin:0 0 28px}
+.band .btn{border-color:#F6F1EA;color:#F6F1EA}
+.band .btn:hover{background:#F6F1EA;color:#3B4424}
+.steps{display:grid;gap:12px}
+.step{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:20px 22px;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center}
+.step i{font-style:normal;font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.1em;opacity:.6}
+.step b{font-family:var(--display);font-size:20px;letter-spacing:-.02em;display:block}
+.step span{font-size:13px;opacity:.75}
+
+/* values */
+.values{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-block:1px solid var(--border)}
+.values div{background:var(--bg);padding:32px 24px}
+.values b{font-family:var(--display);font-size:19px;letter-spacing:-.02em;display:block;margin-bottom:6px}
+.values span{font-size:13px;color:var(--mid)}
+
+/* journal */
+.jgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.jcard{cursor:pointer;border-radius:20px;background:var(--card);border:1px solid var(--border);padding:26px;display:flex;flex-direction:column;gap:14px;min-height:240px;transition:transform .25s}
+.jcard:hover{transform:translateY(-4px)}
+.jcard .label{color:var(--clay)}
+.jcard h3{font-family:var(--display);font-weight:700;font-size:24px;letter-spacing:-.03em;line-height:1.08;margin:0;text-wrap:balance}
+.jcard p{font-size:13px;color:var(--mid);margin:0}
+.jcard .more{margin-top:auto;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+
+/* newsletter + footer */
+.news{text-align:center;padding-block:clamp(56px,8vw,110px)}
+.news h2{font-family:var(--display);font-weight:800;font-size:clamp(40px,6vw,84px);letter-spacing:-.05em;line-height:.9;margin:12px auto 18px;max-width:900px}
+.news p{color:var(--mid);margin:0 auto 26px;max-width:420px}
+.news form{display:flex;gap:8px;max-width:460px;margin:0 auto;flex-wrap:wrap}
+.news input{flex:1;min-width:0;border:1.5px solid var(--border);background:var(--card);color:var(--fg);border-radius:99px;padding:14px 20px;font:inherit}
+.news-ok{margin-top:14px;font-size:13px;color:var(--olive);font-weight:600}
+footer{background:var(--ink);color:var(--on-ink);padding-block:56px 28px}
+.f-grid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:40px;margin-bottom:56px}
+footer .logo{color:var(--on-ink);font-size:56px}
+footer p{opacity:.6;font-size:13px;max-width:260px}
+footer h4{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin:0 0 16px;opacity:.6}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+footer a{color:inherit;text-decoration:none;font-size:14px;cursor:pointer}
+footer a:hover{color:var(--clay)}
+.f-bot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:12px;opacity:.5;border-top:1px solid color-mix(in srgb,var(--on-ink) 18%,transparent);padding-top:22px}
+
+/* drawer */
+.scrim{position:fixed;inset:0;background:rgba(20,16,12,.4);z-index:300;opacity:0;pointer-events:none;transition:opacity .3s}
+.scrim.open{opacity:1;pointer-events:all}
+.drawer{position:fixed;top:0;right:0;height:100%;width:420px;max-width:100vw;background:var(--bg);z-index:400;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1)}
+.drawer.open{transform:none}
+.d-head{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--border)}
+.d-head b{font-family:var(--display);font-size:24px;letter-spacing:-.03em}
+.x{background:none;border:0;font-size:24px;cursor:pointer;line-height:1;color:var(--mid)}
+.d-ship{padding:14px 24px;border-bottom:1px solid var(--border);font-size:12px;color:var(--mid)}
+.d-bar{height:4px;border-radius:9px;background:var(--bg2);margin-top:8px;overflow:hidden}
+.d-bar i{display:block;height:100%;background:var(--clay);transition:width .3s}
+.d-items{flex:1;overflow-y:auto}
+.d-empty{display:grid;place-items:center;height:100%;color:var(--light);font-size:14px;padding:40px;text-align:center}
+.ci{display:grid;grid-template-columns:76px 1fr;gap:16px;padding:18px 24px;border-bottom:1px solid var(--border)}
+.ci .shot{border-radius:12px}
+.ci .pouch{width:50%;padding:8% 6%}
+.ci .pouch b,.ci .pouch small{display:none}
+.ci .pouch span{font-size:6px}
+.ci-n{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:-.02em;margin-bottom:10px}
+.ci-r{display:flex;justify-content:space-between;align-items:center}
+.qty{display:flex;align-items:center;border:1.5px solid var(--border);border-radius:99px}
+.qty button{background:none;border:0;width:30px;height:30px;cursor:pointer;font-size:15px}
+.qty span{width:22px;text-align:center;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+.rm{background:none;border:0;padding:0;margin-top:8px;font-size:12px;color:var(--light);text-decoration:underline;cursor:pointer}
+.d-foot{padding:20px 24px;border-top:1px solid var(--border)}
+.d-sub{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
+.d-sub b{font-family:var(--display);font-size:26px;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.d-foot .btn{width:100%}
+
+/* overlays */
+.ov{position:fixed;inset:0;z-index:600;background:var(--bg);overflow-y:auto;transform:translateY(100%);transition:transform .45s cubic-bezier(.4,0,.2,1)}
+.ov.open{transform:none}
+.ov-h{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:64px}
+.back{background:none;border:0;cursor:pointer;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;justify-self:start;padding:0}
+.ov-h .x{justify-self:end}
+.pd{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px);padding-block:clamp(24px,4vw,56px)}
+.pd .shot{position:sticky;top:88px;border-radius:28px}
+.pd .pouch{width:42%}
+.pd h1{font-family:var(--display);font-weight:800;font-size:clamp(42px,5.5vw,76px);letter-spacing:-.05em;line-height:.92;margin:12px 0 12px}
+.pd .tagline{font-size:18px;color:var(--mid);margin:0 0 20px}
+.pd .price{font-size:24px;display:block;margin-bottom:24px}
+.pd .desc{color:var(--mid);max-width:480px;margin:0 0 24px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.chips span{border:1.5px solid var(--border);border-radius:99px;padding:6px 14px;font-size:12px;font-weight:600}
+.pd .btn{width:100%;max-width:480px}
+.pd h3{font-family:var(--display);font-size:22px;letter-spacing:-.03em;margin:40px 0 12px}
+.ing{list-style:none;margin:0;padding:0;max-width:480px}
+.ing li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--border);font-size:14px}
+.ing li span:last-child{color:var(--mid);font-variant-numeric:tabular-nums;white-space:nowrap}
+.prose{max-width:680px;margin:0 auto;padding-block:clamp(32px,5vw,72px)}
+.prose h1{font-family:var(--display);font-weight:800;font-size:clamp(40px,6vw,72px);letter-spacing:-.05em;line-height:.92;margin:14px 0 24px;text-wrap:balance}
+.prose h3{font-family:var(--display);font-size:26px;letter-spacing:-.03em;margin:36px 0 10px}
+.prose p{font-size:16px;line-height:1.8;color:var(--mid);margin:0 0 18px}
+.prose p strong{color:var(--fg)}
+.prose .label{color:var(--clay)}
+.meta{font-size:12px;color:var(--light);padding-bottom:24px;margin-bottom:28px;border-bottom:1px solid var(--border)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:36px 0}
+.stats div{background:var(--bg2);border-radius:18px;padding:24px}
+.stats b{font-family:var(--display);font-size:40px;letter-spacing:-.04em;color:var(--clay);display:block;line-height:1}
+.stats span{font-size:12px;color:var(--mid)}
+
+/* responsive */
+@media (max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}.cats{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:900px){
+  .hero,.band,.pd{grid-template-columns:1fr}
+  .pd .shot{position:relative;top:0}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .cats{grid-template-columns:repeat(3,1fr)}
+  .values{grid-template-columns:repeat(2,1fr)}
+  .jgrid{grid-template-columns:1fr}
+  .f-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:600px){
+  .nav-links{display:none}
+  .nav-in{grid-template-columns:auto 1fr}
+  .logo{font-size:26px}
+  .cats{grid-template-columns:repeat(2,1fr)}
+  .cat{min-height:110px}
+  .grid{gap:22px 12px}
+  .card-n{font-size:17px}
+  .card-d{display:none}
+  .card-r{flex-direction:column;align-items:flex-start}
+  .add{width:100%}
+  .values{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr}
+  .marquee-t span{font-size:18px}
+}
+</style>
+
+<div class="announce">Free UK delivery over £40 · 30-day returns · Third-party tested</div>
+
+<nav><div class="nav-in wrap">
+  <div class="nav-links">
+    <button onclick="go('shop')">Shop</button>
+    <button onclick="openOv('about')">About</button>
+    <button onclick="openOv('journal')">Journal</button>
+  </div>
+  <a href="#" class="logo">forma<i>.</i></a>
+  <div class="nav-r"><button onclick="openDrawer()">Bag<span class="bag-n" id="bagN">0</span></button></div>
+</div></nav>
+
+<header class="hero wrap">
+  <div>
+    <span class="label" style="color:var(--clay)">Daily wellness, done properly</span>
+    <h1>Feel good, <em>on purpose.</em></h1>
+    <p>Vitamins, protein and daily rituals with nothing to hide. Clean formulas, honest doses, and labels you can actually read.</p>
+    <div class="hero-ctas">
+      <button class="btn btn-dark" onclick="go('shop')">Shop all</button>
+      <button class="btn btn-ghost" onclick="openOv('about')">Our story</button>
+    </div>
+    <div class="hero-meta">
+      <div><strong>40+</strong>products coming</div>
+      <div><strong>10</strong>categories</div>
+      <div><strong>0</strong>proprietary blends</div>
+    </div>
+  </div>
+  <div class="hero-shots" id="heroShots"></div>
+</header>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-t" id="mq"></div></div>
+
+<section class="sec wrap">
+  <div class="sec-h"><div><span class="label" style="color:var(--mid)">Shop by need</span><h2>What are you after?</h2></div></div>
+  <div class="cats" id="cats"></div>
+</section>
+
+<section class="sec wrap" id="shop" style="padding-top:0">
+  <div class="sec-h"><div><span class="label" style="color:var(--mid)" id="count">12 products</span><h2 id="shopTitle">The full line-up</h2></div></div>
+  <div class="filters" id="filters"></div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section class="wrap sec">
+  <div class="band">
+    <div>
+      <span class="label" style="opacity:.7">The Forma ritual</span>
+      <h2>Three minutes. Every morning.</h2>
+      <p>No 14-step stacks. No guesswork. Start with the basics that cover the most ground, then build around what you actually need.</p>
+      <button class="btn" onclick="openProduct('starter-bundle')">Get the starter set</button>
+    </div>
+    <div class="steps">
+      <div class="step"><i>01</i><div><b>Daily Essentials</b><span>D3, K2, magnesium, omega-3 with breakfast</span></div></div>
+      <div class="step"><i>02</i><div><b>Whey or Plant Protein</b><span>25g in your shake, oats or coffee</span></div></div>
+      <div class="step"><i>03</i><div><b>Rest Formula</b><span>An hour before bed, every night</span></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="values wrap" style="padding-inline:0">
+  <div><b>Third-party tested</b><span>Every batch, independently verified</span></div>
+  <div><b>Honest doses</b><span>Full amounts on every label</span></div>
+  <div><b>Made in the UK</b><span>GMP-certified facilities</span></div>
+  <div><b>30-day returns</b><span>Not for you? Send it back</span></div>
+</div>
+
+<section class="sec wrap">
+  <div class="sec-h"><div><span class="label" style="color:var(--mid)">Journal</span><h2>Read up.</h2></div><button class="btn btn-ghost" onclick="openOv('journal')">All articles</button></div>
+  <div class="jgrid" id="jgrid"></div>
+</section>
+
+<section class="news wrap">
+  <span class="label" style="color:var(--clay)">10% off your first order</span>
+  <h2>Join the Forma list.</h2>
+  <p>New drops, honest science and the occasional good deal. No spam, ever.</p>
+  <form onsubmit="event.preventDefault();this.nextElementSibling.hidden=false;this.reset()">
+    <input type="email" required placeholder="Your email">
+    <button class="btn btn-dark" type="submit">Sign up</button>
+  </form>
+  <div class="news-ok" hidden>You're in. Check your inbox for your code.</div>
+</section>
+
+<footer><div class="wrap">
+  <div class="f-grid">
+    <div><a class="logo" href="#">forma<i>.</i></a><p>Everyday wellness, done properly. Vitamins, protein and daily rituals.</p></div>
+    <div><h4>Shop</h4><ul><li><a onclick="setCat('all');go('shop')">All products</a></li><li><a onclick="setCat('vitamins');go('shop')">Vitamins</a></li><li><a onclick="setCat('protein');go('shop')">Protein</a></li><li><a onclick="setCat('bundles');go('shop')">Bundles</a></li></ul></div>
+    <div><h4>Help</h4><ul><li><a href="/faq">FAQ</a></li><li><a href="/shipping">Shipping & returns</a></li><li><a href="/contact">Contact</a></li></ul></div>
+    <div><h4>Company</h4><ul><li><a onclick="openOv('about')">About</a></li><li><a onclick="openOv('journal')">Journal</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/terms">Terms</a></li></ul></div>
+  </div>
+  <div class="f-bot"><span>© 2026 Forma. All rights reserved.</span><span>Food supplements should not replace a varied diet.</span></div>
+</div></footer>
+
+<!-- drawer -->
+<div class="scrim" id="scrim" onclick="closeDrawer()"></div>
+<aside class="drawer" id="drawer">
+  <div class="d-head"><b>Your bag</b><button class="x" onclick="closeDrawer()">×</button></div>
+  <div class="d-ship" id="dShip"></div>
+  <div class="d-items" id="dItems"></div>
+  <div class="d-foot" id="dFoot" hidden>
+    <div class="d-sub"><span>Subtotal</span><b id="dSub">£0.00</b></div>
+    <a class="btn btn-dark" href="/checkout">Checkout</a>
+  </div>
+</aside>
+
+<!-- overlays -->
+<div class="ov" id="ov-product"><div class="ov-h wrap"><button class="back" onclick="closeOv('product')">← Back</button><a class="logo" href="#" style="font-size:24px">forma<i>.</i></a><button class="x" onclick="closeOv('product')">×</button></div><div class="pd wrap" id="pd"></div></div>
+
+<div class="ov" id="ov-about"><div class="ov-h wrap"><button class="back" onclick="closeOv('about')">← Back</button><a class="logo" href="#" style="font-size:24px">forma<i>.</i></a><button class="x" onclick="closeOv('about')">×</button></div>
+  <div class="prose wrap">
+    <span class="label">Our story</span>
+    <h1>Wellness that fits real life.</h1>
+    <p>Forma started with a simple frustration: wellness had become loud, expensive and confusing. <strong>Padded ingredient lists, mystery blends, and brands spending more on packaging than on what goes inside.</strong></p>
+    <p>So we built the store we wanted to shop at. One place for the vitamins, protein and daily rituals that actually make a difference, with every dose printed in full and every batch independently tested.</p>
+    <p>We cover ten categories because health is not one thing. Sleep, energy, gut, immunity, skin: they all connect. Start with the basics, then build around what you need.</p>
+    <div class="stats"><div><b>10</b><span>Categories</span></div><div><b>100%</b><span>Transparent labels</span></div><div><b>£40</b><span>Free UK delivery from</span></div></div>
+    <p>Questions? Email us at <strong>hello@forma.co</strong>. A real person replies.</p>
+    <button class="btn btn-dark" onclick="closeOv('about');go('shop')">Shop the range</button>
+  </div>
+</div>
+
+<div class="ov" id="ov-journal"><div class="ov-h wrap"><button class="back" onclick="closeOv('journal')">← Back</button><a class="logo" href="#" style="font-size:24px">forma<i>.</i></a><button class="x" onclick="closeOv('journal')">×</button></div>
+  <div class="wrap sec"><div class="sec-h"><div><span class="label" style="color:var(--mid)">Journal</span><h2>Honest science, plainly put.</h2></div></div><div class="jgrid" id="jgrid2"></div></div>
+</div>
+
+<div class="ov" id="ov-article" style="z-index:620"><div class="ov-h wrap"><button class="back" onclick="closeOv('article')">← Journal</button><a class="logo" href="#" style="font-size:24px">forma<i>.</i></a><button class="x" onclick="closeOv('article')">×</button></div><div class="prose wrap" id="article"></div></div>
+
+<script>
+var CATS=[
+  ['all','Everything','Shop all','#231F1A','#F6F1EA'],
+  ['vitamins','Vitamins & Minerals','The basics','#E9C46A','#3A2E10'],
+  ['protein','Protein & Performance','Build & recover','#B5562F','#FBEDE4'],
+  ['sleep','Sleep & Recovery','Wind down','#3D4A6B','#E6EAF4'],
+  ['energy','Energy & Focus','No crash','#E8A33D','#3A2408'],
+  ['gut','Gut Health','Feel lighter','#8FA05A','#1F2610'],
+  ['immunity','Immunity','Year-round','#C9472F','#FCE9E3'],
+  ['skin','Skin & Hair','Glow from within','#E7B7A3','#4A2418'],
+  ['omega','Omega & Oils','Heart & brain','#2F6B6B','#E2F1F0'],
+  ['greens','Greens & Superfoods','One scoop','#5E6B3A','#EEF1E0'],
+  ['bundles','Bundles & Offers','Save more','#D8CBB8','#231F1A']
+];
+// pc = backdrop, pk = pack, pt = pack text, form = pouch|tub
+var PRODUCTS={
+ 'daily-essentials':{name:'Daily Essentials',cat:'vitamins',price:38,tag:'Best seller',pc:'#F3E2B3',pk:'#E9C46A',pt:'#3A2E10',form:'pouch',size:'60 caps',
+  short:'D3, K2, magnesium and omega-3. The four most people miss.',tagline:'The four you actually need, in forms that absorb.',
+  desc:'Vitamin D3 with K2, high-strength omega-3 and magnesium glycinate. The foundational stack most UK adults are short on, with nothing padded in.',
+  claims:['Vegan capsules','No fillers','Third-party tested','30 servings'],ing:[['Vitamin D3','4000 IU'],['Vitamin K2 (MK-7)','100mcg'],['Omega-3 (EPA/DHA)','1000mg'],['Magnesium Glycinate','300mg']]},
+ 'whey-protein':{name:'Whey Protein',cat:'protein',price:44,pc:'#F0CDB9',pk:'#B5562F',pt:'#FBEDE4',form:'tub',size:'1kg',
+  short:'25g protein per scoop. Grass-fed, short ingredient list.',tagline:'25g protein. Grass-fed. Nothing unnecessary.',
+  desc:'Whey concentrate from grass-fed cows, naturally flavoured, with a five-ingredient label. No artificial sweeteners, no blends.',
+  claims:['25g protein','Grass-fed','Natural flavour','~30 servings'],ing:[['Whey Protein Concentrate','31g'],['Cocoa Powder','2g'],['Natural Flavouring','0.5g'],['Sunflower Lecithin','0.25g']]},
+ 'plant-protein':{name:'Plant Protein',cat:'protein',price:42,pc:'#DDE3C4',pk:'#5E6B3A',pt:'#EEF1E0',form:'tub',size:'1kg',
+  short:'Pea and rice blend. Complete amino profile, 23g protein.',tagline:'Complete amino acids. Zero compromise.',
+  desc:'Pea and brown rice protein in a 70:30 blend for a complete amino acid profile. Smooth, not chalky, naturally sweetened.',
+  claims:['Vegan','23g protein','Complete aminos','~30 servings'],ing:[['Pea Protein Isolate','22g'],['Brown Rice Protein','9g'],['Cocoa','2g'],['Coconut Sugar','0.5g']]},
+ 'creatine':{name:'Creatine',cat:'protein',price:24,tag:'New',pc:'#E4E1DA',pk:'#231F1A',pt:'#F6F1EA',form:'tub',size:'300g',
+  short:'Pure micronised creatine monohydrate. Unflavoured.',tagline:'The most researched supplement there is.',
+  desc:'Pure micronised creatine monohydrate. 5g a day supports strength, power output and, increasingly, cognitive performance.',
+  claims:['Creapure®-grade','Unflavoured','Vegan','60 servings'],ing:[['Creatine Monohydrate','5g']]},
+ 'rest-formula':{name:'Rest Formula',cat:'sleep',price:29,pc:'#C9D0E3',pk:'#3D4A6B',pt:'#E6EAF4',form:'pouch',size:'60 caps',
+  short:'Ashwagandha, magnesium, L-theanine. Wind down properly.',tagline:'Wind down properly. Wake up recovered.',
+  desc:'KSM-66 ashwagandha, magnesium glycinate and L-theanine. A stimulant-free, melatonin-free evening formula.',
+  claims:['Melatonin-free','Non-habit forming','Vegan','30 servings'],ing:[['Ashwagandha KSM-66','600mg'],['Magnesium Glycinate','200mg'],['L-Theanine','200mg'],['Lemon Balm','150mg']]},
+ 'clarity-complex':{name:'Clarity Complex',cat:'energy',price:34,pc:'#F5D9AA',pk:'#E8A33D',pt:'#3A2408',form:'pouch',size:'60 caps',
+  short:"Lion's mane, bacopa, B-complex. Focus without the jitters.",tagline:'Sharp all afternoon. No 3pm crash.',
+  desc:"A caffeine-free focus stack. Lion's mane, bacopa and methylated B vitamins for steady, clean concentration.",
+  claims:['Caffeine-free','No blends','Vegan','30 servings'],ing:[["Lion's Mane",'500mg'],['Bacopa Monnieri','300mg'],['Vitamin B6 (P5P)','25mg'],['Vitamin B12','500mcg']]},
+ 'gut-complex':{name:'Gut Complex',cat:'gut',price:32,pc:'#DCE3C3',pk:'#8FA05A',pt:'#1F2610',form:'pouch',size:'60 caps',
+  short:'10 strains, prebiotic fibre and enzymes in one.',tagline:'10 strains. One capsule. Feel lighter.',
+  desc:'25 billion CFU across 10 researched strains, plus prebiotic FOS and digestive enzymes for everyday gut comfort.',
+  claims:['25bn CFU','10 strains','Shelf stable','30 servings'],ing:[['Probiotic Blend (10 strains)','25bn CFU'],['FOS Prebiotic','200mg'],['Digestive Enzymes','100mg']]},
+ 'defence-complex':{name:'Defence Complex',cat:'immunity',price:28,pc:'#F2C6BA',pk:'#C9472F',pt:'#FCE9E3',form:'pouch',size:'60 caps',
+  short:'Zinc, vitamin C, elderberry, beta-glucan.',tagline:'Year-round cover for your immune system.',
+  desc:'Vitamin C, zinc bisglycinate, elderberry and beta-glucan, each dosed at the level used in research.',
+  claims:['Vegan','No colours','Third-party tested','30 servings'],ing:[['Vitamin C','1000mg'],['Elderberry Extract','400mg'],['Beta-Glucan','250mg'],['Zinc Bisglycinate','15mg']]},
+ 'glow-collagen':{name:'Glow Collagen',cat:'skin',price:36,tag:'New',pc:'#F5DDD2',pk:'#E7B7A3',pt:'#4A2418',form:'tub',size:'300g',
+  short:'10g marine collagen with vitamin C and biotin.',tagline:'Skin, hair and nails, from the inside.',
+  desc:'10g hydrolysed marine collagen per serving with vitamin C and biotin. Unflavoured, dissolves into anything.',
+  claims:['10g collagen','Unflavoured','Wild-caught','30 servings'],ing:[['Marine Collagen','10g'],['Vitamin C','80mg'],['Hyaluronic Acid','100mg'],['Biotin','50mcg']]},
+ 'omega-3':{name:'Omega-3 Pure',cat:'omega',price:22,pc:'#C3DEDC',pk:'#2F6B6B',pt:'#E2F1F0',form:'pouch',size:'90 softgels',
+  short:'High-strength EPA/DHA. No fishy aftertaste.',tagline:'High-strength and molecularly distilled.',
+  desc:'2000mg omega-3 per serving with a 3:2 EPA to DHA ratio. Distilled for purity, enteric coated so it stays down.',
+  claims:['Enteric coated','Distilled','No aftertaste','45 servings'],ing:[['Total Omega-3','2000mg'],['EPA','1200mg'],['DHA','800mg'],['Vitamin E','5mg']]},
+ 'daily-greens':{name:'Daily Greens',cat:'greens',price:35,pc:'#D3DABA',pk:'#5E6B3A',pt:'#EEF1E0',form:'pouch',size:'30 scoops',
+  short:'Spirulina, chlorella, wheatgrass. One scoop and done.',tagline:'One scoop. One less thing to think about.',
+  desc:'A tidy greens blend of spirulina, chlorella and wheatgrass with digestive enzymes. Light apple and mint flavour.',
+  claims:['Vegan','No sweeteners','Fully disclosed','30 servings'],ing:[['Spirulina','2000mg'],['Chlorella','1000mg'],['Wheatgrass','1000mg'],['Digestive Enzymes','200mg']]},
+ 'starter-bundle':{name:'The Starter Set',cat:'bundles',price:69,was:89,tag:'Save £20',pc:'#E8DDCC',pk:'#231F1A',pt:'#F6F1EA',form:'pouch',size:'3 products',
+  short:'Daily Essentials, Rest Formula and Omega-3 Pure.',tagline:'The foundation, bundled.',
+  desc:'Our three most-recommended products together: Daily Essentials, Rest Formula and Omega-3 Pure, at £20 off.',
+  claims:['3 products','Save £20','Free delivery','30-day supply'],ing:[['Daily Essentials','1 pack'],['Rest Formula','1 pack'],['Omega-3 Pure','1 pack']]}
+};
+var ARTICLES={
+ protein:{tag:'Nutrition · 5 min',title:'How much protein do you actually need?',ex:'The old guidance was set to avoid deficiency, not to help you thrive.',body:'<p>Official guidance in the UK sits around 0.75g of protein per kilogram of bodyweight. That figure was designed to prevent deficiency, not to optimise anything.</p><h3>What newer research suggests</h3><p>For active adults, a range of <strong>1.6 to 2.2g per kg per day</strong> is associated with better muscle retention and recovery. For a 75kg person that is roughly 120 to 165g.</p><p>Total daily intake matters far more than timing. The "anabolic window" has been largely downgraded.</p><h3>Making it practical</h3><p>Anchor each meal with a protein source and use a shake to close the gap. Pea and rice together give plant eaters a complete amino profile.</p>'},
+ vitd:{tag:'Vitamins · 4 min',title:'The UK vitamin D problem',ex:'From October to March, the sun is simply too low. Here is what to do.',body:'<p>Between October and March, UK sunlight is too weak for your skin to make meaningful vitamin D, even on a bright day.</p><h3>How common is low vitamin D?</h3><p>Around one in five UK adults has low levels. The NHS advises everyone to consider <strong>10mcg (400 IU) a day</strong> through autumn and winter.</p><h3>Why pair it with K2</h3><p>D3 increases calcium absorption; K2 (MK-7) helps direct that calcium to bones. Long-term D3 users often pair the two.</p>'},
+ sleep:{tag:'Sleep · 6 min',title:'Magnesium and sleep: what the evidence says',ex:'The form matters more than the dose. Most cheap magnesium barely absorbs.',body:'<p>Magnesium is involved in the systems that help you relax and fall asleep, and many people fall short through diet alone.</p><h3>The form matters</h3><p><strong>Magnesium oxide</strong>, the cheapest form, absorbs poorly. Glycinate is far better absorbed and gentler on the stomach, and glycine itself has calming properties.</p><h3>How people take it</h3><p>Most studies use 200 to 400mg taken 30 to 60 minutes before bed, with benefits clearest after a few weeks.</p>'}
+};
+
+function esc(s){return String(s).replace(/'/g,"\\'")}
+function shot(id,extra){var p=PRODUCTS[id];return '<div class="shot" style="--pc:'+p.pc+';--pk:'+p.pk+';--pt:'+p.pt+'">'+(extra||'')+'<div class="pouch '+(p.form==='tub'?'tub':'')+'"><b>forma.</b><span>'+p.name+'</span><small>'+p.size+'</small></div></div>'}
+function catName(k){var c=CATS.find(function(c){return c[0]===k});return c?c[1]:''}
+
+// render
+document.getElementById('heroShots').innerHTML=shot('daily-essentials')+shot('whey-protein')+shot('rest-formula');
+var mqWords=['Honest doses','Clean formulas','Third-party tested','No proprietary blends','Made in the UK','Feel good on purpose'];
+document.getElementById('mq').innerHTML=mqWords.concat(mqWords).concat(mqWords).concat(mqWords).map(function(w){return '<span>'+w+' ✺</span>'}).join('');
+document.getElementById('cats').innerHTML=CATS.slice(1).map(function(c){return '<button class="cat" style="--cc:'+c[3]+';--ct:'+c[4]+'" onclick="setCat(\''+c[0]+'\');go(\'shop\')"><small>'+c[2]+'</small><b>'+c[1]+'</b></button>'}).join('');
+document.getElementById('filters').innerHTML=CATS.map(function(c){return '<button class="fb'+(c[0]==='all'?' on':'')+'" data-c="'+c[0]+'" onclick="setCat(\''+c[0]+'\')">'+(c[0]==='all'?'All':c[1])+'</button>'}).join('');
+document.getElementById('grid').innerHTML=Object.keys(PRODUCTS).map(function(id){var p=PRODUCTS[id];
+  return '<div class="card" data-c="'+p.cat+'" onclick="openProduct(\''+id+'\')">'+shot(id,p.tag?'<span class="tag">'+p.tag+'</span>':'')+
+  '<div class="card-b"><div class="label card-c">'+catName(p.cat)+'</div><div class="card-n">'+p.name+'</div><div class="card-d">'+p.short+'</div>'+
+  '<div class="card-r"><span class="price">£'+p.price+(p.was?'<s>£'+p.was+'</s>':'')+'</span><button class="add" onclick="event.stopPropagation();add(\''+id+'\',this)">Add</button></div></div></div>'}).join('');
+var jhtml=Object.keys(ARTICLES).map(function(k){var a=ARTICLES[k];return '<div class="jcard" onclick="openArticle(\''+k+'\')"><span class="label">'+a.tag+'</span><h3>'+a.title+'</h3><p>'+a.ex+'</p><span class="more">Read →</span></div>'}).join('');
+document.getElementById('jgrid').innerHTML=jhtml;document.getElementById('jgrid2').innerHTML=jhtml;
+
+function setCat(c){
+  document.querySelectorAll('.fb').forEach(function(b){b.classList.toggle('on',b.dataset.c===c)});
+  var n=0;document.querySelectorAll('#grid .card').forEach(function(el){var s=c==='all'||el.dataset.c===c;el.hidden=!s;if(s)n++});
+  document.getElementById('shopTitle').textContent=c==='all'?'The full line-up':catName(c);
+  document.getElementById('count').textContent=n?n+' product'+(n>1?'s':''):'Coming soon';
+  if(!n){document.getElementById('count').textContent='Coming soon'}
+}
+function go(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+
+// cart
+var cart={};
+function add(id,btn){cart[id]=(cart[id]||0)+1;render();
+  var b=document.getElementById('bagN');b.classList.add('bump');setTimeout(function(){b.classList.remove('bump')},250);
+  if(btn){btn.textContent='Added';btn.classList.add('added');setTimeout(function(){btn.textContent='Add';btn.classList.remove('added')},1100)}}
+function qty(id,d){cart[id]+=d;if(cart[id]<=0)delete cart[id];render()}
+function render(){
+  var ids=Object.keys(cart),count=0,total=0;
+  ids.forEach(function(id){count+=cart[id];total+=cart[id]*PRODUCTS[id].price});
+  document.getElementById('bagN').textContent=count;
+  var left=Math.max(0,40-total);
+  document.getElementById('dShip').innerHTML=(left?'You are <strong>£'+left.toFixed(2)+'</strong> away from free delivery':'<strong>Free UK delivery</strong> unlocked')+'<div class="d-bar"><i style="width:'+Math.min(100,total/40*100)+'%"></i></div>';
+  document.getElementById('dItems').innerHTML=ids.length?ids.map(function(id){var p=PRODUCTS[id];
+    return '<div class="ci">'+shot(id)+'<div><div class="ci-n">'+p.name+'</div><div class="ci-r"><div class="qty"><button onclick="qty(\''+id+'\',-1)">−</button><span>'+cart[id]+'</span><button onclick="qty(\''+id+'\',1)">+</button></div><span class="price">£'+(p.price*cart[id]).toFixed(2)+'</span></div><button class="rm" onclick="delete cart[\''+id+'\'];render()">Remove</button></div></div>'}).join(''):'<div class="d-empty">Your bag is empty.<br>Time to fix that.</div>';
+  document.getElementById('dFoot').hidden=!ids.length;
+  document.getElementById('dSub').textContent='£'+total.toFixed(2);
+}
+function openDrawer(){document.getElementById('drawer').classList.add('open');document.getElementById('scrim').classList.add('open')}
+function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('scrim').classList.remove('open')}
+
+// overlays
+function openOv(k){document.getElementById('ov-'+k).classList.add('open');document.body.style.overflow='hidden'}
+function closeOv(k){document.getElementById('ov-'+k).classList.remove('open');if(!document.querySelector('.ov.open'))document.body.style.overflow=''}
+function openProduct(id){var p=PRODUCTS[id];
+  document.getElementById('pd').innerHTML=shot(id)+'<div><span class="label" style="color:var(--clay)">'+catName(p.cat)+'</span><h1>'+p.name+'</h1><p class="tagline">'+p.tagline+'</p><span class="price">£'+p.price+(p.was?'<s>£'+p.was+'</s>':'')+'</span><p class="desc">'+p.desc+'</p><div class="chips">'+p.claims.map(function(c){return '<span>'+c+'</span>'}).join('')+'</div><button class="btn btn-dark" onclick="add(\''+id+'\');closeOv(\'product\');openDrawer()">Add to bag · £'+p.price+'</button><h3>What\'s inside</h3><ul class="ing">'+p.ing.map(function(r){return '<li><span>'+r[0]+'</span><span>'+r[1]+'</span></li>'}).join('')+'</ul></div>';
+  document.getElementById('ov-product').scrollTop=0;openOv('product')}
+function openArticle(k){var a=ARTICLES[k];document.getElementById('article').innerHTML='<span class="label">'+a.tag+'</span><h1>'+a.title+'</h1><div class="meta">Forma Journal · October 2026</div>'+a.body;document.getElementById('ov-article').scrollTop=0;openOv('article')}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){['article','product','about','journal'].forEach(closeOv);closeDrawer()}});
+render();
+</script>
