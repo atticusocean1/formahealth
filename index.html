@@ -263,6 +263,23 @@ footer a:hover{color:var(--clay)}
   .shop-top .search{max-width:none;width:100%}
   .grid{grid-template-columns:repeat(2,1fr)!important}
 }
+
+/* seamless pass */
+.card-d{display:none}
+.card-b{padding-top:16px}
+.card-r{margin-top:6px}
+.add{border-color:var(--border)}
+.card:hover .add{border-color:var(--ink)}
+.shot::after{display:none}
+.shot{background:var(--bg2)}
+.side-top{border-bottom:1px solid var(--border);padding-bottom:14px}
+.side-top .fb{font-weight:600;color:var(--fg)}
+.grid.fade .card:not([hidden]){animation:fadeUp .45s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.grid.fade .card{animation:none}}
+.hero{padding-block:clamp(40px,6vw,88px) clamp(56px,7vw,104px)}
+#shop{border-top:1px solid var(--border)}
+.values{margin-top:clamp(40px,6vw,80px)}
 /* Alo x Elva type pass */
 .logo{font-family:'Barlow',system-ui,sans-serif!important;font-weight:600!important;letter-spacing:.34em!important;text-transform:uppercase;font-size:20px!important;margin-right:-.34em}
 footer .logo{font-size:34px!important}
@@ -296,19 +313,13 @@ footer .logo{font-size:34px!important}
     <h1>Feel good, <em>on purpose.</em></h1>
     <p>Vitamins, protein and daily rituals with nothing to hide. Clean formulas, honest doses, and labels you can actually read.</p>
     <div class="hero-ctas">
-      <button class="btn btn-dark" onclick="go('shop')">Shop all</button>
+      <button class="btn btn-dark" onclick="go('shop')">Shop now</button>
       <button class="btn btn-ghost" onclick="openOv('about')">Our story</button>
-    </div>
-    <div class="hero-meta">
-      <div><strong id="pCount">60</strong>products</div>
-      <div><strong>18</strong>categories</div>
-      <div><strong>0</strong>proprietary blends</div>
     </div>
   </div>
   <div class="hero-shots" id="heroShots"></div>
 </header>
 
-<div class="marquee" aria-hidden="true"><div class="marquee-t" id="mq"></div></div>
 
 <section class="sec wrap" id="shop">
   <div class="shop">
@@ -316,7 +327,7 @@ footer .logo{font-size:34px!important}
     <div class="shop-main">
       <div class="shop-top">
         <div><span class="label" style="color:var(--mid)" id="count">59 products</span><h2 class="shop-title" id="shopTitle">Shop all</h2></div>
-        <input class="search" id="search" type="search" placeholder="Search products" oninput="setCat('all',this.value)">
+        <input class="search" id="search" type="search" placeholder="Search products" oninput="doSearch(this.value)">
       </div>
       <div class="filters" id="filters"></div>
       <div class="grid" id="grid"></div>
@@ -366,7 +377,7 @@ footer .logo{font-size:34px!important}
 <footer><div class="wrap">
   <div class="f-grid">
     <div><a class="logo" href="#">forma<i>.</i></a><p>Everyday wellness, done properly. Vitamins, protein and daily rituals.</p></div>
-    <div><h4>Shop</h4><ul><li><a onclick="setCat('all');go('shop')">All products</a></li><li><a onclick="setCat('vitamins');go('shop')">Vitamins</a></li><li><a onclick="setCat('protein');go('shop')">Protein</a></li><li><a onclick="setCat('bundles');go('shop')">Bundles</a></li></ul></div>
+    <div><h4>Shop</h4><ul><li><a onclick="setCat('best');go('shop')">Best sellers</a></li><li><a onclick="setCat('vitamins');go('shop')">Vitamins</a></li><li><a onclick="setCat('protein');go('shop')">Protein</a></li><li><a onclick="setCat('bundles');go('shop')">Bundles</a></li></ul></div>
     <div><h4>Help</h4><ul><li><a href="/faq">FAQ</a></li><li><a href="/shipping">Shipping and returns</a></li><li><a href="/contact">Contact</a></li></ul></div>
     <div><h4>Company</h4><ul><li><a onclick="openOv('about')">About</a></li><li><a onclick="openOv('journal')">Journal</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/terms">Terms</a></li></ul></div>
   </div>
@@ -416,7 +427,7 @@ var CATS=[
 ];
 var PRODUCTS={},BACKS=['#DCE7F5','#E9EEF5','#D3DFEF','#E4EAF2'],_n=0;
 function P(id,name,cat,price,form,size,short,desc,claims,ing,tag,was){
-  PRODUCTS[id]={name:name,cat:cat,price:price,form:form,size:size,short:short,tagline:short,desc:desc,claims:claims,ing:ing,tag:tag,was:was,pc:BACKS[_n++%4],pk:'#FFFFFF',pt:'#0F2A4A'};
+  PRODUCTS[id]={name:name,cat:cat,price:price,form:form,size:size,short:short,tagline:short,desc:desc,claims:claims,ing:ing,tag:tag,was:was,pc:'var(--bg2)',pk:'#FFFFFF',pt:'#0F2A4A'};
 }
 // Multivitamins
 P('daily-essentials','Daily Essentials','multi',24,'pouch','60 caps','D3, K2, magnesium and omega-3 in one daily routine.','The four nutrients most UK adults fall short on, in forms your body can actually use. Nothing padded in.',['Vegan','No fillers','30 days'],[['Vitamin D3','4000 IU'],['Vitamin K2 (MK-7)','100mcg'],['Omega-3','1000mg'],['Magnesium Glycinate','300mg']],'Best seller');
@@ -433,7 +444,7 @@ P('magnesium','Magnesium Glycinate','minerals',15,'pouch','90 caps','The gentle,
 P('zinc','Zinc 15mg','minerals',7,'pouch','90 tabs','Zinc bisglycinate, one small tablet a day.','A well-absorbed form of zinc in a small daily tablet.',['Vegan','Small tablet','90 days'],[['Zinc (bisglycinate)','15mg']]);
 P('iron','Gentle Iron','minerals',9,'pouch','60 caps','Iron bisglycinate with vitamin C. Kind to the stomach.','A gentle iron that is less likely to upset your stomach, paired with vitamin C.',['Vegan','Non-constipating','60 days'],[['Iron (bisglycinate)','14mg'],['Vitamin C','40mg']]);
 // Omegas
-P('omega-3','Omega-3 Pure','omegas',18,'pouch','90 softgels','High-strength fish oil. No fishy aftertaste.','2000mg omega-3 per serving, molecularly distilled and enteric coated so it stays down.',['Distilled','No aftertaste','45 days'],[['Total Omega-3','2000mg'],['EPA','1200mg'],['DHA','800mg']]);
+P('omega-3','Omega-3 Pure','omegas',18,'pouch','90 softgels','High-strength fish oil. No fishy aftertaste.','2000mg omega-3 per serving, molecularly distilled and enteric coated so it stays down.',['Distilled','No aftertaste','45 days'],[['Total Omega-3','2000mg'],['EPA','1200mg'],['DHA','800mg']],'Popular');
 P('algae-omega','Algae Omega-3','omegas',22,'pouch','60 softgels','Plant-based omega-3 straight from the source.','Omega-3 from algae, where fish get it from in the first place. Fully vegan.',['Vegan','Sustainable','30 days'],[['Algal Oil','1000mg'],['DHA','400mg'],['EPA','200mg']]);
 P('cod-liver','Cod Liver Oil','omegas',12,'bottle','250ml','The classic, with natural vitamins A and D.','Pure Norwegian cod liver oil with a light lemon flavour.',['Lemon flavour','Norwegian','50 servings'],[['Cod Liver Oil','5ml'],['Omega-3','1100mg'],['Vitamin D','10mcg']]);
 // Herbals
@@ -466,7 +477,7 @@ P('matcha','Ceremonial Matcha','drinks',18,'tub','50g','Stone-ground Japanese ma
 P('mushroom-coffee','Mushroom Coffee','drinks',22,'pouch','200g','Half the caffeine, all the flavour.',"Arabica coffee blended with lion's mane and chaga. Smooth and nutty.",['Half caffeine','Vegan','30 cups'],[['Arabica Coffee','70%'],["Lion's Mane",'15%'],['Chaga','15%']],'New');
 P('night-tea','Night Time Tea','drinks',4,'pouch','20 bags','Chamomile, lemon balm and lavender.','A caffeine-free evening blend to make part of your wind-down.',['Caffeine free','Organic','20 bags'],[['Chamomile','50%'],['Lemon Balm','30%'],['Lavender','20%']]);
 // Superfoods
-P('daily-greens','Daily Greens','superfoods',30,'pouch','30 scoops','Spirulina, chlorella and wheatgrass. One scoop.','A tidy greens blend with digestive enzymes. Light apple and mint.',['Vegan','No sweeteners','30 servings'],[['Spirulina','2000mg'],['Chlorella','1000mg'],['Wheatgrass','1000mg']]);
+P('daily-greens','Daily Greens','superfoods',30,'pouch','30 scoops','Spirulina, chlorella and wheatgrass. One scoop.','A tidy greens blend with digestive enzymes. Light apple and mint.',['Vegan','No sweeteners','30 servings'],[['Spirulina','2000mg'],['Chlorella','1000mg'],['Wheatgrass','1000mg']],'Popular');
 P('spirulina','Spirulina Tablets','superfoods',12,'pouch','180 tabs','Organic spirulina, easy tablets.','Pure organic spirulina pressed into tablets. No taste, no mess.',['Organic','Vegan','30 days'],[['Spirulina','3000mg']]);
 P('chia','Organic Chia Seeds','superfoods',5,'pouch','500g','Fibre and omega-3 by the spoonful.','Whole organic chia seeds for oats, yoghurt or smoothies.',['Organic','High fibre','Vegan'],[['Chia Seeds','100%']]);
 P('cacao','Raw Cacao Powder','superfoods',7,'pouch','250g','Rich, unsweetened, minimally processed.','Cold-pressed cacao powder from Peru, rich in magnesium.',['Organic','Unsweetened','Vegan'],[['Raw Cacao','100%']]);
@@ -509,11 +520,13 @@ function catName(k){var c=CATS.find(function(c){return c[0]===k});return c?c[1]:
 // render
 document.getElementById('heroShots').innerHTML=shot('daily-essentials')+shot('whey-protein')+shot('rest-formula');
 var mqWords=['Honest doses','Clean formulas','Third-party tested','No proprietary blends','Made in the UK','Feel good on purpose'];
-document.getElementById('mq').innerHTML=mqWords.concat(mqWords).concat(mqWords).concat(mqWords).map(function(w){return '<span>'+w+' &nbsp;·</span>'}).join('');
+var _mq=mqWords.concat(mqWords).concat(mqWords).concat(mqWords).map(function(w){return '<span>'+w+' &nbsp;·</span>'}).join('');
 var GROUPS=[['Supplements',['multi','vitamins','minerals','omegas','herbals','mushrooms','sleep','gut','immunity']],['Sports',['protein','sports','snacks']],['Food and Drink',['food','drinks','superfoods']],['Beauty',['beauty','skincare']],['Offers',['bundles']]];
-function cnt(c){return Object.keys(PRODUCTS).filter(function(k){return c==='all'||PRODUCTS[k].cat===c}).length}
-document.getElementById('side').innerHTML='<button class="fb side-all on" data-c="all" onclick="setCat(\'all\')">Shop all<span>'+cnt('all')+'</span></button>'+GROUPS.map(function(g){return '<div class="side-g"><div class="label side-h">'+g[0]+'</div>'+g[1].map(function(c){return '<button class="fb" data-c="'+c+'" onclick="setCat(\''+c+'\')">'+catName(c)+'<span>'+cnt(c)+'</span></button>'}).join('')+'</div>'}).join('');
-document.getElementById('filters').innerHTML=CATS.map(function(c){return '<button class="fb'+(c[0]==='all'?' on':'')+'" data-c="'+c[0]+'" onclick="setCat(\''+c[0]+'\')">'+(c[0]==='all'?'All':c[1])+'</button>'}).join('');
+function inView(c,p){if(c==='best')return ['Best seller','Popular','Best value'].indexOf(p.tag)>-1;if(c==='new')return p.tag==='New';return p.cat===c}
+function viewName(c){return c==='best'?'Best sellers':c==='new'?'New in':catName(c)}
+function cnt(c){return Object.keys(PRODUCTS).filter(function(k){return inView(c,PRODUCTS[k])}).length}
+document.getElementById('side').innerHTML='<div class="side-g side-top"><button class="fb on" data-c="best" onclick="setCat(\'best\')">Best sellers<span>'+cnt('best')+'</span></button><button class="fb" data-c="new" onclick="setCat(\'new\')">New in<span>'+cnt('new')+'</span></button></div>'+GROUPS.map(function(g){return '<div class="side-g"><div class="label side-h">'+g[0]+'</div>'+g[1].map(function(c){return '<button class="fb" data-c="'+c+'" onclick="setCat(\''+c+'\')">'+catName(c)+'<span>'+cnt(c)+'</span></button>'}).join('')+'</div>'}).join('');
+document.getElementById('filters').innerHTML=[['best','Best sellers'],['new','New in']].concat(CATS.slice(1)).map(function(c){return '<button class="fb'+(c[0]==='best'?' on':'')+'" data-c="'+c[0]+'" onclick="setCat(\''+c[0]+'\')">'+c[1]+'</button>'}).join('');
 document.getElementById('grid').innerHTML=Object.keys(PRODUCTS).map(function(id){var p=PRODUCTS[id];
   return '<div class="card" data-id="'+id+'" data-c="'+p.cat+'" onclick="openProduct(\''+id+'\')">'+shot(id,p.tag?'<span class="tag">'+p.tag+'</span>':'')+
   '<div class="card-b"><div class="label card-c">'+catName(p.cat)+'</div><div class="card-n">'+p.name+'</div><div class="card-d">'+p.short+'</div>'+
@@ -521,12 +534,17 @@ document.getElementById('grid').innerHTML=Object.keys(PRODUCTS).map(function(id)
 var jhtml=Object.keys(ARTICLES).map(function(k){var a=ARTICLES[k];return '<div class="jcard" onclick="openArticle(\''+k+'\')"><span class="label">'+a.tag+'</span><h3>'+a.title+'</h3><p>'+a.ex+'</p><span class="more">Read →</span></div>'}).join('');
 document.getElementById('jgrid').innerHTML=jhtml;document.getElementById('jgrid2').innerHTML=jhtml;
 
-function setCat(c,q){q=(q||'').toLowerCase().trim();if(q===''&&document.getElementById('search')&&arguments.length<2)document.getElementById('search').value='';
-  document.querySelectorAll('.fb').forEach(function(b){b.classList.toggle('on',b.dataset.c===c)});
-  var n=0;document.querySelectorAll('#grid .card').forEach(function(el){var p=PRODUCTS[el.dataset.id];var s=(c==='all'||el.dataset.c===c)&&(!q||(p.name+' '+p.short+' '+catName(p.cat)).toLowerCase().indexOf(q)>-1);el.hidden=!s;if(s)n++});
-  document.getElementById('shopTitle').textContent=q?'Results for "'+q+'"':(c==='all'?'Shop all':catName(c));
-  document.getElementById('count').textContent=n?n+' product'+(n>1?'s':''):'Coming soon';
-  if(!n){document.getElementById('count').textContent='Coming soon'}
+var curCat='best';
+function setCat(c){curCat=c;var se=document.getElementById('search');if(se)se.value='';show()}
+function doSearch(q){show(q)}
+function show(q){
+  q=(q||'').toLowerCase().trim();
+  document.querySelectorAll('.fb').forEach(function(b){b.classList.toggle('on',!q&&b.dataset.c===curCat)});
+  var n=0;document.querySelectorAll('#grid .card').forEach(function(el){var p=PRODUCTS[el.dataset.id];
+    var s=q?(p.name+' '+p.short+' '+catName(p.cat)).toLowerCase().indexOf(q)>-1:inView(curCat,p);el.hidden=!s;if(s)n++});
+  document.getElementById('shopTitle').textContent=q?'Results':viewName(curCat);
+  document.getElementById('count').textContent=q?(n+' match'+(n===1?'':'es')+' for "'+q+'"'):(n?n+' product'+(n>1?'s':''):'Coming soon');
+  var g=document.getElementById('grid');g.classList.remove('fade');void g.offsetWidth;g.classList.add('fade');
 }
 function go(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
 
@@ -558,6 +576,6 @@ function openProduct(id){var p=PRODUCTS[id];
   document.getElementById('ov-product').scrollTop=0;openOv('product')}
 function openArticle(k){var a=ARTICLES[k];document.getElementById('article').innerHTML='<span class="label">'+a.tag+'</span><h1>'+a.title+'</h1><div class="meta">Forma Journal · October 2026</div>'+a.body;document.getElementById('ov-article').scrollTop=0;openOv('article')}
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){['article','product','about','journal'].forEach(closeOv);closeDrawer()}});
-document.getElementById('pCount').textContent=Object.keys(PRODUCTS).length;
+show();
 render();
 </script>
