@@ -280,6 +280,41 @@ footer a:hover{color:var(--clay)}
 .hero{padding-block:clamp(40px,6vw,88px) clamp(56px,7vw,104px)}
 #shop{border-top:1px solid var(--border)}
 .values{margin-top:clamp(40px,6vw,80px)}
+
+/* imagery pass */
+.hero{display:block;position:relative;padding:0!important;min-height:min(86vh,780px);overflow:hidden;background:var(--bg2)}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% center}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(246,248,251,.92) 0%,rgba(246,248,251,.6) 38%,rgba(246,248,251,0) 62%);pointer-events:none}
+.hero-txt{position:relative;z-index:2;min-height:min(86vh,780px);display:flex;flex-direction:column;justify-content:center;max-width:720px;padding-block:72px}
+.hero-txt h1,.hero-txt p,.hero-txt .label{color:#0E1E33}
+.hero-txt .label{color:#2D63C8!important}
+.hero-txt p{color:#3E4B5E}
+.hero-txt .btn-dark{background:#0F2A4A;border-color:#0F2A4A;color:#F6F8FB}
+.hero-txt .btn-ghost{border-color:#0F2A4A;color:#0F2A4A}
+.hero-txt .btn-ghost:hover{background:#0F2A4A;color:#F6F8FB}
+.band{grid-template-columns:1fr 1.1fr!important;padding:0!important;overflow:hidden;gap:0!important}
+.band-img{height:100%;min-height:520px}
+.band-img img{width:100%;height:100%;object-fit:cover;display:block}
+.band-body{padding:clamp(32px,5vw,72px)}
+.band-body .steps{margin:4px 0 28px}
+.why{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px);align-items:center}
+.why-img{aspect-ratio:4/5;max-width:100%;border-radius:20px;overflow:hidden;background:var(--bg2)}
+.why-img img{width:100%;height:100%;object-fit:cover;display:block}
+.why h2{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(40px,5vw,72px);line-height:.92;margin:12px 0 22px}
+.why p{color:var(--mid);max-width:460px;margin:0 0 16px}
+.why .btn{margin-top:12px}
+.values{margin-top:0!important}
+.about-img{width:100%;aspect-ratio:16/8;object-fit:cover;border-radius:16px;display:block;margin-bottom:40px;background:var(--bg2)}
+@media (max-width:900px){
+  .hero{min-height:0}
+  .hero-img{position:relative;height:auto;aspect-ratio:4/3;object-position:78% center}
+  .hero::after{display:none}
+  .hero-txt{min-height:0;padding-block:36px 48px;background:var(--bg)}
+  .hero-txt h1{color:var(--fg)}.hero-txt p{color:var(--mid)}
+  .band{grid-template-columns:1fr!important}
+  .band-img{min-height:0;aspect-ratio:4/3}
+  .why{grid-template-columns:1fr}
+}
 /* Alo x Elva type pass */
 .logo{font-family:'Barlow',system-ui,sans-serif!important;font-weight:600!important;letter-spacing:.34em!important;text-transform:uppercase;font-size:20px!important;margin-right:-.34em}
 footer .logo{font-size:34px!important}
@@ -307,8 +342,9 @@ footer .logo{font-size:34px!important}
   <div class="nav-r"><button onclick="openDrawer()">Bag<span class="bag-n" id="bagN">0</span></button></div>
 </div></nav>
 
-<header class="hero wrap">
-  <div>
+<header class="hero">
+  <img class="hero-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_3FaLQucPUUuSFx3qcjN2PYyKVzS/hf_20261018_214534_d285e92c-783b-4dfc-a1f2-dd0e4cd8abca.png" alt="Forma supplements on a kitchen counter in morning light" fetchpriority="high">
+  <div class="hero-txt wrap">
     <span class="label" style="color:var(--clay)">Everyday wellness, simplified</span>
     <h1>Feel good, <em>on purpose.</em></h1>
     <p>Vitamins, protein and daily rituals with nothing to hide. Clean formulas, honest doses, and labels you can actually read.</p>
@@ -317,7 +353,6 @@ footer .logo{font-size:34px!important}
       <button class="btn btn-ghost" onclick="openOv('about')">Our story</button>
     </div>
   </div>
-  <div class="hero-shots" id="heroShots"></div>
 </header>
 
 
@@ -337,17 +372,28 @@ footer .logo{font-size:34px!important}
 
 <section class="wrap sec">
   <div class="band">
-    <div>
+    <div class="band-img"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FaLQucPUUuSFx3qcjN2PYyKVzS/hf_20261018_214533_25cc3c6a-a181-47c0-927f-97b15bb7a1e8.png" alt="Scooping Forma protein into a shaker" loading="lazy"></div>
+    <div class="band-body">
       <span class="label" style="opacity:.7">The Forma ritual</span>
       <h2>Three minutes. Every morning.</h2>
       <p>No 14-step stacks. No guesswork. Start with the basics that cover the most ground, then build around what you actually need.</p>
-      <button class="btn" onclick="openProduct('starter-bundle')">Get the starter set</button>
-    </div>
-    <div class="steps">
+      <div class="steps">
       <div class="step"><i>01</i><div><b>Daily Essentials</b><span>D3, K2, magnesium, omega-3 with breakfast</span></div></div>
       <div class="step"><i>02</i><div><b>Whey or Plant Protein</b><span>25g in your shake, oats or coffee</span></div></div>
       <div class="step"><i>03</i><div><b>Rest Formula</b><span>An hour before bed, every night</span></div></div>
-    </div>
+      </div>
+      <button class="btn" onclick="openProduct('starter-bundle')">Get the starter set</button>
+  </div>
+</section>
+
+<section class="why wrap sec">
+  <div class="why-img"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FaLQucPUUuSFx3qcjN2PYyKVzS/hf_20261018_214535_21594e5c-a08c-4153-bb28-ece846cc5f6c.png" alt="Morning stretch in a bright studio" loading="lazy"></div>
+  <div class="why-body">
+    <span class="label" style="color:var(--clay)">Why Forma</span>
+    <h2>Less noise. More you.</h2>
+    <p>Wellness got loud. Endless stacks, mystery blends and labels you need a dictionary for. We kept it simple: the everyday essentials, made properly, priced fairly.</p>
+    <p>Every dose is printed in full and every batch is independently tested, so you always know exactly what you are taking.</p>
+    <button class="btn btn-ghost" onclick="openOv('about')">Our story</button>
   </div>
 </section>
 
@@ -401,6 +447,7 @@ footer .logo{font-size:34px!important}
 
 <div class="ov" id="ov-about"><div class="ov-h wrap"><button class="back" onclick="closeOv('about')">← Back</button><a class="logo" href="#" style="font-size:24px">forma<i>.</i></a><button class="x" onclick="closeOv('about')">×</button></div>
   <div class="prose wrap">
+    <img class="about-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_3FaLQucPUUuSFx3qcjN2PYyKVzS/hf_20261018_214533_0592a2e9-5428-4e67-9327-05fb7ea5d060.png" alt="Oats, chia, matcha and supplements on linen">
     <span class="label">Our story</span>
     <h1>Wellness that fits real life.</h1>
     <p>Forma started with a simple frustration: wellness had become loud, expensive and confusing. <strong>Padded ingredient lists, mystery blends, and brands spending more on packaging than on what goes inside.</strong></p>
@@ -518,7 +565,6 @@ function money(n){return '£'+(n%1?n.toFixed(2):n)}
 function catName(k){var c=CATS.find(function(c){return c[0]===k});return c?c[1]:''}
 
 // render
-document.getElementById('heroShots').innerHTML=shot('daily-essentials')+shot('whey-protein')+shot('rest-formula');
 var mqWords=['Honest doses','Clean formulas','Third-party tested','No proprietary blends','Made in the UK','Feel good on purpose'];
 var _mq=mqWords.concat(mqWords).concat(mqWords).concat(mqWords).map(function(w){return '<span>'+w+' &nbsp;·</span>'}).join('');
 var GROUPS=[['Supplements',['multi','vitamins','minerals','omegas','herbals','mushrooms','sleep','gut','immunity']],['Sports',['protein','sports','snacks']],['Food and Drink',['food','drinks','superfoods']],['Beauty',['beauty','skincare']],['Offers',['bundles']]];
