@@ -1,11 +1,11 @@
-<title>Forma Blue</title>
+<title>Forma</title>
 <meta name="description" content="Vitamins, protein and daily rituals. Clean formulas, honest labels, free UK delivery over £40.">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,500;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@500;600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
 <style>
 :root{
   --bg:#F6F8FB;--bg2:#E9EEF5;--card:#FFFFFF;--fg:#0E1E33;--mid:#5A677A;--light:#97A2B2;--border:#DDE3EC;
   --clay:#2D63C8;--olive:#0F2A4A;--ink:#0F2A4A;--on-ink:#F6F8FB;
-  --display:'Playfair Display',Georgia,serif;--body:'DM Sans',system-ui,sans-serif;
+  --display:'Barlow Condensed','Arial Narrow',sans-serif;--body:'DM Sans',system-ui,sans-serif;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B1524;--bg2:#111E31;--card:#0F1A2B;--fg:#EEF2F8;--mid:#9AA7BA;--light:#5C6A80;--border:#1E2C42;--clay:#6B9BF0;--olive:#16365E;--ink:#DCE7F5;--on-ink:#0B1524;color-scheme:dark}}
 :root[data-theme="dark"]{--bg:#0B1524;--bg2:#111E31;--card:#0F1A2B;--fg:#EEF2F8;--mid:#9AA7BA;--light:#5C6A80;--border:#1E2C42;--clay:#6B9BF0;--olive:#16365E;--ink:#DCE7F5;--on-ink:#0B1524;color-scheme:dark}
@@ -235,6 +235,47 @@ footer a:hover{color:var(--clay)}
   .values{grid-template-columns:1fr}
   .stats{grid-template-columns:1fr}
 }
+
+
+/* shop sidebar */
+.shop{display:grid;grid-template-columns:220px 1fr;gap:clamp(24px,4vw,56px);align-items:start}
+.shop-main{min-width:0}
+.side{position:sticky;top:88px;display:flex;flex-direction:column;gap:22px;max-height:calc(100vh - 110px);overflow-y:auto;scrollbar-width:none;padding-bottom:12px}
+.side::-webkit-scrollbar{display:none}
+.side-g{display:flex;flex-direction:column}
+.side-h{color:var(--light);margin-bottom:8px}
+.side .fb{all:unset;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:14px;padding:6px 0;color:var(--mid);transition:color .15s}
+.side .fb span{font-size:11px;color:var(--light);font-variant-numeric:tabular-nums}
+.side .fb:hover{color:var(--fg)}
+.side .fb.on{color:var(--fg);font-weight:600}
+.side .fb.on{color:var(--clay)}
+.side .fb.on span{color:var(--clay)}
+.side .side-all{font-weight:600;color:var(--fg);border-bottom:1px solid var(--border);padding-bottom:14px}
+.shop-top{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.shop-title{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(34px,4vw,54px);line-height:.95;margin:6px 0 0}
+.shop-top .search{max-width:300px;margin:0;padding:12px 20px}
+#filters{display:none}
+.grid{grid-template-columns:repeat(3,1fr)!important}
+@media (max-width:900px){
+  .shop{grid-template-columns:1fr}
+  .side{display:none}
+  #filters{display:flex}
+  .shop-top .search{max-width:none;width:100%}
+  .grid{grid-template-columns:repeat(2,1fr)!important}
+}
+/* Alo x Elva type pass */
+.logo{font-family:'Barlow',system-ui,sans-serif!important;font-weight:600!important;letter-spacing:.34em!important;text-transform:uppercase;font-size:20px!important;margin-right:-.34em}
+footer .logo{font-size:34px!important}
+.logo i{display:none}
+.hero h1,.sec-h h2,.band h2,.news h2,.pd h1,.prose h1{font-weight:600;text-transform:uppercase;letter-spacing:-.005em;line-height:.92}
+.hero h1{font-size:clamp(54px,8vw,118px)}
+.hero h1 em{font-style:normal;font-weight:600;color:var(--clay)}
+.card-n,.ci-n,.jcard h3,.step b,.values b,.cat b,.prose h3,.pd h3,.d-head b{font-weight:500;letter-spacing:.005em}
+.card-n{font-size:21px}
+.cat b{font-size:22px;text-transform:uppercase;letter-spacing:.02em}
+.pouch b{font-family:'Barlow',sans-serif!important;font-style:normal!important;font-weight:600!important;letter-spacing:.3em!important;font-size:clamp(7px,.8vw,10px)!important;text-transform:uppercase}
+.pouch span{font-weight:600;text-transform:uppercase;letter-spacing:.02em}
+.price,.d-sub b,.stats b,.hero-meta strong{font-family:var(--display);font-weight:600}
 </style>
 
 <div class="announce">Free UK delivery over £40 · 30-day returns · Third-party tested</div>
@@ -269,16 +310,18 @@ footer a:hover{color:var(--clay)}
 
 <div class="marquee" aria-hidden="true"><div class="marquee-t" id="mq"></div></div>
 
-<section class="sec wrap">
-  <div class="sec-h"><div><span class="label" style="color:var(--mid)">Shop by need</span><h2>What are you after?</h2></div></div>
-  <div class="cats" id="cats"></div>
-</section>
-
-<section class="sec wrap" id="shop" style="padding-top:0">
-  <div class="sec-h"><div><span class="label" style="color:var(--mid)" id="count">12 products</span><h2 id="shopTitle">The full line-up</h2></div></div>
-  <input class="search" id="search" type="search" placeholder="Search vitamins, protein, skincare..." oninput="setCat('all',this.value)">
-  <div class="filters" id="filters"></div>
-  <div class="grid" id="grid"></div>
+<section class="sec wrap" id="shop">
+  <div class="shop">
+    <aside class="side" id="side"></aside>
+    <div class="shop-main">
+      <div class="shop-top">
+        <div><span class="label" style="color:var(--mid)" id="count">59 products</span><h2 class="shop-title" id="shopTitle">Shop all</h2></div>
+        <input class="search" id="search" type="search" placeholder="Search products" oninput="setCat('all',this.value)">
+      </div>
+      <div class="filters" id="filters"></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </div>
 </section>
 
 <section class="wrap sec">
@@ -459,7 +502,7 @@ var ARTICLES={
 };
 
 function esc(s){return String(s).replace(/'/g,"\\'")}
-function shot(id,extra){var p=PRODUCTS[id];return '<div class="shot" style="--pc:'+p.pc+';--pk:'+p.pk+';--pt:'+p.pt+'">'+(extra||'')+'<div class="pouch '+(p.form==='pouch'?'':p.form)+'"><b>forma.</b><span>'+p.name+'</span><small>'+p.size+'</small></div></div>'}
+function shot(id,extra){var p=PRODUCTS[id];return '<div class="shot" style="--pc:'+p.pc+';--pk:'+p.pk+';--pt:'+p.pt+'">'+(extra||'')+'<div class="pouch '+(p.form==='pouch'?'':p.form)+'"><b>forma</b><span>'+p.name+'</span><small>'+p.size+'</small></div></div>'}
 function money(n){return '£'+(n%1?n.toFixed(2):n)}
 function catName(k){var c=CATS.find(function(c){return c[0]===k});return c?c[1]:''}
 
@@ -467,7 +510,9 @@ function catName(k){var c=CATS.find(function(c){return c[0]===k});return c?c[1]:
 document.getElementById('heroShots').innerHTML=shot('daily-essentials')+shot('whey-protein')+shot('rest-formula');
 var mqWords=['Honest doses','Clean formulas','Third-party tested','No proprietary blends','Made in the UK','Feel good on purpose'];
 document.getElementById('mq').innerHTML=mqWords.concat(mqWords).concat(mqWords).concat(mqWords).map(function(w){return '<span>'+w+' &nbsp;·</span>'}).join('');
-document.getElementById('cats').innerHTML=CATS.slice(1).map(function(c){var n=Object.keys(PRODUCTS).filter(function(k){return PRODUCTS[k].cat===c[0]}).length;return '<button class="cat" onclick="setCat(\''+c[0]+'\');go(\'shop\')"><small>'+n+' products</small><b>'+c[1]+'</b></button>'}).join('');
+var GROUPS=[['Supplements',['multi','vitamins','minerals','omegas','herbals','mushrooms','sleep','gut','immunity']],['Sports',['protein','sports','snacks']],['Food and Drink',['food','drinks','superfoods']],['Beauty',['beauty','skincare']],['Offers',['bundles']]];
+function cnt(c){return Object.keys(PRODUCTS).filter(function(k){return c==='all'||PRODUCTS[k].cat===c}).length}
+document.getElementById('side').innerHTML='<button class="fb side-all on" data-c="all" onclick="setCat(\'all\')">Shop all<span>'+cnt('all')+'</span></button>'+GROUPS.map(function(g){return '<div class="side-g"><div class="label side-h">'+g[0]+'</div>'+g[1].map(function(c){return '<button class="fb" data-c="'+c+'" onclick="setCat(\''+c+'\')">'+catName(c)+'<span>'+cnt(c)+'</span></button>'}).join('')+'</div>'}).join('');
 document.getElementById('filters').innerHTML=CATS.map(function(c){return '<button class="fb'+(c[0]==='all'?' on':'')+'" data-c="'+c[0]+'" onclick="setCat(\''+c[0]+'\')">'+(c[0]==='all'?'All':c[1])+'</button>'}).join('');
 document.getElementById('grid').innerHTML=Object.keys(PRODUCTS).map(function(id){var p=PRODUCTS[id];
   return '<div class="card" data-id="'+id+'" data-c="'+p.cat+'" onclick="openProduct(\''+id+'\')">'+shot(id,p.tag?'<span class="tag">'+p.tag+'</span>':'')+
@@ -479,7 +524,7 @@ document.getElementById('jgrid').innerHTML=jhtml;document.getElementById('jgrid2
 function setCat(c,q){q=(q||'').toLowerCase().trim();if(q===''&&document.getElementById('search')&&arguments.length<2)document.getElementById('search').value='';
   document.querySelectorAll('.fb').forEach(function(b){b.classList.toggle('on',b.dataset.c===c)});
   var n=0;document.querySelectorAll('#grid .card').forEach(function(el){var p=PRODUCTS[el.dataset.id];var s=(c==='all'||el.dataset.c===c)&&(!q||(p.name+' '+p.short+' '+catName(p.cat)).toLowerCase().indexOf(q)>-1);el.hidden=!s;if(s)n++});
-  document.getElementById('shopTitle').textContent=q?'Results for "'+q+'"':(c==='all'?'The full line-up':catName(c));
+  document.getElementById('shopTitle').textContent=q?'Results for "'+q+'"':(c==='all'?'Shop all':catName(c));
   document.getElementById('count').textContent=n?n+' product'+(n>1?'s':''):'Coming soon';
   if(!n){document.getElementById('count').textContent='Coming soon'}
 }
