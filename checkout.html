@@ -179,7 +179,9 @@ var FREE_OVER = 40, SHIP = {t48:3.95, t24:5.95};
 var CODES = {WELCOME10:{pct:10,label:'WELCOME10 (10% off)'}};
 var items=[], discount=null;
 function money(n){return '£'+n.toFixed(2)}
-try{items=(JSON.parse(localStorage.getItem('forma_cart')||'{}').items||[]).filter(function(i){return i.qty>0})}catch(e){}
+try{var _h=location.hash.match(/[#&]c=([^&]+)/);if(_h){items=JSON.parse(decodeURIComponent(escape(atob(decodeURIComponent(_h[1])))));try{localStorage.setItem('forma_cart',JSON.stringify({items:items}))}catch(e){}history.replaceState(null,'',location.pathname)}}catch(e){items=[]}
+if(!items.length){try{items=JSON.parse(localStorage.getItem('forma_cart')||'{}').items||[]}catch(e){}}
+items=(items||[]).filter(function(i){return i&&i.qty>0&&typeof i.price==='number'});
 if(!items.length){document.getElementById('emptyState').hidden=false}
 else{
   document.getElementById('checkout').hidden=false;
