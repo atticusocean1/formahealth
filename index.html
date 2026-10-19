@@ -1,3 +1,9 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F6F8FB">
 <title>Forma</title>
 <meta name="description" content="Vitamins, protein and daily rituals. Clean formulas, honest labels, free UK delivery over £40.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@500;600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
@@ -315,6 +321,95 @@ footer a:hover{color:var(--clay)}
   .band-img{min-height:0;aspect-ratio:4/3}
   .why{grid-template-columns:1fr}
 }
+
+/* mobile-first pass */
+html{-webkit-text-size-adjust:100%}
+img{max-width:100%}
+button,a{-webkit-tap-highlight-color:transparent}
+.a-short{display:none}
+.menu-btn{display:none}
+.mmenu{position:fixed;inset:0;z-index:700;background:var(--bg);display:flex;flex-direction:column;padding:0 20px calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-100%);visibility:hidden;transition:transform .35s cubic-bezier(.4,0,.2,1),visibility 0s .35s}
+.mmenu.open{transform:none;visibility:visible;transition:transform .35s cubic-bezier(.4,0,.2,1)}
+.mmenu-h{display:flex;justify-content:space-between;align-items:center;height:60px;padding-top:env(safe-area-inset-top,0px);border-bottom:1px solid var(--border)}
+.mmenu-links{display:flex;flex-direction:column;padding-block:20px}
+.mmenu-links button{all:unset;cursor:pointer;font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:40px;line-height:1.15;padding-block:6px;color:var(--fg)}
+.mmenu-sub{margin-top:auto;display:flex;gap:24px;border-top:1px solid var(--border);padding-top:20px}
+.mmenu-sub button{all:unset;cursor:pointer;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding-block:10px}
+.ov{visibility:hidden;transition:transform .45s cubic-bezier(.4,0,.2,1),visibility 0s .45s}
+.ov.open{visibility:visible;transition:transform .45s cubic-bezier(.4,0,.2,1)}
+.drawer{visibility:hidden;transition:transform .35s cubic-bezier(.4,0,.2,1),visibility 0s .35s}
+.drawer.open{visibility:visible;transition:transform .35s cubic-bezier(.4,0,.2,1)}
+.d-foot{padding-bottom:calc(20px + env(safe-area-inset-bottom,0px))}
+.band .btn{background:#F6F8FB;color:#0F2A4A;border-color:#F6F8FB}
+.band .btn:hover{background:transparent;color:#F6F8FB}
+.pd-bar{display:none}
+input,select,textarea{font-size:16px!important}
+@media (max-width:600px){
+  .a-long{display:none}.a-short{display:inline}
+  nav .nav-in{grid-template-columns:44px 1fr 44px;height:56px}
+  .menu-btn{all:unset;display:flex;flex-direction:column;justify-content:center;gap:6px;width:44px;height:44px;cursor:pointer}
+  .menu-btn span{display:block;width:22px;height:1.5px;background:var(--fg)}
+  nav .logo{justify-self:center;margin-right:-.34em}
+  .nav-r button{font-size:0;display:flex;align-items:center;justify-content:flex-end;min-width:44px;min-height:44px}
+  .nav-r .bag-n{font-size:11px;min-width:24px;height:24px;margin:0}
+  .hero-img{aspect-ratio:5/4}
+  .hero-txt{padding-block:28px 40px}
+  .hero-txt h1{font-size:clamp(46px,14vw,64px);margin:12px 0 16px}
+  .hero-txt p{font-size:16px;margin-bottom:24px}
+  .hero-ctas .btn{flex:1;padding-inline:16px}
+  .sec{padding-block:44px}
+  #shop{padding-top:32px}
+  .shop-top{margin-bottom:14px;gap:14px}
+  .shop-title{font-size:40px}
+  #filters{position:sticky;top:56px;z-index:50;background:var(--bg);margin-inline:-16px;padding:10px 16px;margin-bottom:18px;border-bottom:1px solid var(--border)}
+  .fb{padding:10px 16px}
+  .grid{gap:24px 12px!important}
+  .card-b{padding-top:10px}
+  .card-n{font-size:17px}
+  .card-c{font-size:10px}
+  .add{min-height:40px}
+  .tag{top:8px;left:8px;font-size:9px;padding:4px 8px}
+  .band-body{padding:32px 22px}
+  .band h2{font-size:42px}
+  .step{padding:16px 18px;gap:14px}
+  .band .btn{width:100%}
+  .why{gap:28px}
+  .why-img{aspect-ratio:4/3}
+  .why h2{font-size:44px}
+  .values{grid-template-columns:1fr 1fr!important}
+  .values div{padding:20px 16px}
+  .values b{font-size:16px}
+  .values span{font-size:12px}
+  .sec-h{align-items:flex-end}
+  .sec-h .btn{padding:11px 16px}
+  .jcard{min-height:0;padding:22px}
+  .news h2{font-size:44px}
+  .news form{flex-direction:column}
+  .news .btn{width:100%}
+  .f-grid{grid-template-columns:1fr 1fr;gap:28px}
+  .f-grid>div:first-child{grid-column:1/-1}
+  footer .logo{font-size:26px!important}
+  .ov-h{height:56px}
+  .pd{padding-bottom:110px}
+  .pd .shot{aspect-ratio:4/3}
+  .pd .pouch{width:30%}
+  .pd .pouch.tub{width:34%}
+  .pd .pouch.bar{width:56%}
+  .pd .pouch.bottle{width:22%}
+  .pd h1{font-size:44px}
+  .pd .tagline{font-size:16px}
+  .pd-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:20;gap:12px;align-items:center;justify-content:space-between;background:var(--bg);border-top:1px solid var(--border);padding:12px 20px calc(12px + env(safe-area-inset-bottom,0px))}
+  .pd>div>.btn{display:none}
+  .pd-bar div{display:flex;flex-direction:column;min-width:0;flex:1}
+  .pd-bar b{font-family:var(--display);font-weight:600;font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pd-bar span{font-size:13px;color:var(--mid)}
+  .pd-bar .btn{padding:14px 22px;flex-shrink:0;width:auto!important;max-width:none!important}
+  .drawer{width:100vw}
+  .qty button{width:40px;height:40px}
+  .ci{padding:16px 20px}
+  .prose{padding-block:28px 56px}
+  .about-img{aspect-ratio:4/3}
+}
 /* Alo x Elva type pass */
 .logo{font-family:'Barlow',system-ui,sans-serif!important;font-weight:600!important;letter-spacing:.34em!important;text-transform:uppercase;font-size:20px!important;margin-right:-.34em}
 footer .logo{font-size:34px!important}
@@ -329,10 +424,13 @@ footer .logo{font-size:34px!important}
 .pouch span{font-weight:600;text-transform:uppercase;letter-spacing:.02em}
 .price,.d-sub b,.stats b,.hero-meta strong{font-family:var(--display);font-weight:600}
 </style>
+</head>
+<body>
 
-<div class="announce">Free UK delivery over £40 · 30-day returns · Third-party tested</div>
+<div class="announce"><span class="a-long">Free UK delivery over £40 · 30-day returns · Third-party tested</span><span class="a-short">Free UK delivery over £40</span></div>
 
 <nav><div class="nav-in wrap">
+  <button class="menu-btn" aria-label="Open menu" onclick="openMenu()"><span></span><span></span></button>
   <div class="nav-links">
     <button onclick="go('shop')">Shop</button>
     <button onclick="openOv('about')">About</button>
@@ -341,6 +439,22 @@ footer .logo{font-size:34px!important}
   <a href="#" class="logo">forma<i>.</i></a>
   <div class="nav-r"><button onclick="openDrawer()">Bag<span class="bag-n" id="bagN">0</span></button></div>
 </div></nav>
+
+<div class="mmenu" id="mmenu" aria-hidden="true">
+  <div class="mmenu-h"><span class="logo">forma</span><button class="x" aria-label="Close menu" onclick="closeMenu()">×</button></div>
+  <div class="mmenu-links">
+    <button onclick="closeMenu();setCat('best');go('shop')">Best sellers</button>
+    <button onclick="closeMenu();setCat('new');go('shop')">New in</button>
+    <button onclick="closeMenu();setCat('protein');go('shop')">Protein</button>
+    <button onclick="closeMenu();setCat('vitamins');go('shop')">Vitamins</button>
+    <button onclick="closeMenu();setCat('bundles');go('shop')">Bundles</button>
+  </div>
+  <div class="mmenu-sub">
+    <button onclick="closeMenu();openOv('about')">About</button>
+    <button onclick="closeMenu();openOv('journal')">Journal</button>
+    <button onclick="closeMenu();openDrawer()">Bag</button>
+  </div>
+</div>
 
 <header class="hero">
   <img class="hero-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_3FaLQucPUUuSFx3qcjN2PYyKVzS/hf_20261018_214534_d285e92c-783b-4dfc-a1f2-dd0e4cd8abca.png" alt="Forma supplements on a kitchen counter in morning light" fetchpriority="high">
@@ -372,7 +486,7 @@ footer .logo{font-size:34px!important}
 
 <section class="wrap sec">
   <div class="band">
-    <div class="band-img"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FaLQucPUUuSFx3qcjN2PYyKVzS/hf_20261018_214533_25cc3c6a-a181-47c0-927f-97b15bb7a1e8.png" alt="Scooping Forma protein into a shaker" loading="lazy"></div>
+    <div class="band-img"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FaLQucPUUuSFx3qcjN2PYyKVzS/hf_20261019_080233_19fac6ff-b901-4537-9899-cdd6e726766b.png" alt="Scooping Forma protein into a shaker" loading="lazy"></div>
     <div class="band-body">
       <span class="label" style="opacity:.7">The Forma ritual</span>
       <h2>Three minutes. Every morning.</h2>
@@ -576,7 +690,7 @@ document.getElementById('filters').innerHTML=[['best','Best sellers'],['new','Ne
 document.getElementById('grid').innerHTML=Object.keys(PRODUCTS).map(function(id){var p=PRODUCTS[id];
   return '<div class="card" data-id="'+id+'" data-c="'+p.cat+'" onclick="openProduct(\''+id+'\')">'+shot(id,p.tag?'<span class="tag">'+p.tag+'</span>':'')+
   '<div class="card-b"><div class="label card-c">'+catName(p.cat)+'</div><div class="card-n">'+p.name+'</div><div class="card-d">'+p.short+'</div>'+
-  '<div class="card-r"><span class="price">£'+p.price+(p.was?'<s>£'+p.was+'</s>':'')+'</span><button class="add" onclick="event.stopPropagation();add(\''+id+'\',this)">Add</button></div></div></div>'}).join('');
+  '<div class="card-r"><span class="price">'+money(p.price)+(p.was?'<s>£'+p.was+'</s>':'')+'</span><button class="add" onclick="event.stopPropagation();add(\''+id+'\',this)">Add</button></div></div></div>'}).join('');
 var jhtml=Object.keys(ARTICLES).map(function(k){var a=ARTICLES[k];return '<div class="jcard" onclick="openArticle(\''+k+'\')"><span class="label">'+a.tag+'</span><h3>'+a.title+'</h3><p>'+a.ex+'</p><span class="more">Read →</span></div>'}).join('');
 document.getElementById('jgrid').innerHTML=jhtml;document.getElementById('jgrid2').innerHTML=jhtml;
 
@@ -615,13 +729,18 @@ function openDrawer(){document.getElementById('drawer').classList.add('open');do
 function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('scrim').classList.remove('open')}
 
 // overlays
+function openMenu(){document.getElementById('mmenu').classList.add('open');document.body.style.overflow='hidden'}
+function closeMenu(){document.getElementById('mmenu').classList.remove('open');document.body.style.overflow=''}
 function openOv(k){document.getElementById('ov-'+k).classList.add('open');document.body.style.overflow='hidden'}
 function closeOv(k){document.getElementById('ov-'+k).classList.remove('open');if(!document.querySelector('.ov.open'))document.body.style.overflow=''}
 function openProduct(id){var p=PRODUCTS[id];
-  document.getElementById('pd').innerHTML=shot(id)+'<div><span class="label" style="color:var(--clay)">'+catName(p.cat)+'</span><h1>'+p.name+'</h1><p class="tagline">'+p.tagline+'</p><span class="price">£'+p.price+(p.was?'<s>£'+p.was+'</s>':'')+'</span><p class="desc">'+p.desc+'</p><div class="chips">'+p.claims.map(function(c){return '<span>'+c+'</span>'}).join('')+'</div><button class="btn btn-dark" onclick="add(\''+id+'\');closeOv(\'product\');openDrawer()">Add to bag · '+money(p.price)+'</button><h3>What\'s inside</h3><ul class="ing">'+p.ing.map(function(r){return '<li><span>'+r[0]+'</span><span>'+r[1]+'</span></li>'}).join('')+'</ul></div>';
+  document.getElementById('pd').innerHTML=shot(id)+'<div><span class="label" style="color:var(--clay)">'+catName(p.cat)+'</span><h1>'+p.name+'</h1><p class="tagline">'+p.tagline+'</p><span class="price">£'+p.price+(p.was?'<s>£'+p.was+'</s>':'')+'</span><p class="desc">'+p.desc+'</p><div class="chips">'+p.claims.map(function(c){return '<span>'+c+'</span>'}).join('')+'</div><button class="btn btn-dark" onclick="add(\''+id+'\');closeOv(\'product\');openDrawer()">Add to bag · '+money(p.price)+'</button><div class="pd-bar"><div><b>'+p.name+'</b><span>'+money(p.price)+'</span></div><button class="btn btn-dark" onclick="add(\''+id+'\');closeOv(\'product\');openDrawer()">Add to bag</button></div><h3>What\'s inside</h3><ul class="ing">'+p.ing.map(function(r){return '<li><span>'+r[0]+'</span><span>'+r[1]+'</span></li>'}).join('')+'</ul></div>';
   document.getElementById('ov-product').scrollTop=0;openOv('product')}
 function openArticle(k){var a=ARTICLES[k];document.getElementById('article').innerHTML='<span class="label">'+a.tag+'</span><h1>'+a.title+'</h1><div class="meta">Forma Journal · October 2026</div>'+a.body;document.getElementById('ov-article').scrollTop=0;openOv('article')}
-document.addEventListener('keydown',function(e){if(e.key==='Escape'){['article','product','about','journal'].forEach(closeOv);closeDrawer()}});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){['article','product','about','journal'].forEach(closeOv);closeDrawer();closeMenu()}});
 show();
 render();
 </script>
+
+</body>
+</html>
