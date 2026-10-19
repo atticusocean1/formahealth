@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F6F8FB">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="robots" content="noindex">
+<title>Order confirmed | Forma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Barlow:wght@600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<header class="hdr"><div class="hdr-in wrap"><span></span><a class="logo" href="/">Forma</a><span></span></div></header>
+<main class="wrap" style="padding-block:64px 96px;max-width:640px;margin:0 auto">
+  <span class="label" style="color:var(--ok)">Order confirmed</span>
+  <h1 style="font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(44px,12vw,72px);line-height:.92;margin:10px 0 16px">Thank you<span id="nm"></span>.</h1>
+  <p style="color:var(--mid);margin:0 0 8px">Your order is in. We have sent a confirmation to <strong id="em" style="color:var(--fg)">your email</strong>.</p>
+  <p style="color:var(--mid);margin:0 0 28px">Orders placed before 2pm on a weekday are dispatched the same day, and you will get a tracking link as soon as it is on its way.</p>
+  <a class="btn btn-dark" href="/">Back to the shop</a>
+  <p style="font-size:13px;color:var(--light);margin-top:28px">Questions about your order? <a href="/contact">Contact us</a>.</p>
+</main>
+<script>
+try{var o=JSON.parse(sessionStorage.getItem('forma_order')||'null');if(o){if(o.address&&o.address.first)document.getElementById('nm').textContent=', '+o.address.first;if(o.email)document.getElementById('em').textContent=o.email}
+localStorage.removeItem('forma_cart')}catch(e){}
+</script>
+</body>
+</html>
