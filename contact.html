@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F6F8FB">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="robots" content="noindex">
+<title>Checkout | Forma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Barlow:wght@600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
+<link rel="stylesheet" href="/site.css">
+<style>
+.co{display:grid;grid-template-columns:1fr;gap:0;padding-bottom:120px}
+.co-main{min-width:0;padding-block:20px 32px}
+.co h1{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:40px;line-height:.95;margin:4px 0 20px}
+.step{border-top:1px solid var(--border);padding-block:24px}
+.step:first-of-type{border-top:0;padding-top:4px}
+.step-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+.step-h h2{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:24px;margin:0;display:flex;gap:10px;align-items:baseline}
+.step-h h2 i{font-style:normal;font-family:var(--body);font-size:12px;font-weight:700;color:var(--light);letter-spacing:.1em}
+.stack{display:grid;gap:12px}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:12px;align-items:center;border:1px solid var(--border);background:var(--card);border-radius:12px;padding:16px;cursor:pointer;min-height:60px}
+.opt input{width:20px;height:20px;accent-color:var(--accent);margin:0;flex-shrink:0}
+.opt div{flex:1;min-width:0}
+.opt b{display:block;font-size:15px}
+.opt span{font-size:13px;color:var(--mid)}
+.opt em{font-style:normal;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.opt:has(input:checked){border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.pay-box{border:1px dashed var(--border);border-radius:14px;padding:22px;background:var(--card);text-align:center;color:var(--mid);font-size:14px}
+.pay-box b{display:block;color:var(--fg);font-size:16px;margin-bottom:6px}
+.pay-frame{width:100%;min-height:560px;border:0;border-radius:14px;background:var(--card)}
+.trust{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:12px;color:var(--mid);margin-top:16px}
+.trust span::before{content:"✓ ";color:var(--ok);font-weight:700}
+
+/* summary */
+.sum-toggle{all:unset;box-sizing:border-box;width:100%;display:flex;justify-content:space-between;align-items:center;padding:16px clamp(16px,4vw,48px);background:var(--bg2);border-bottom:1px solid var(--border);cursor:pointer;font-size:14px;font-weight:600;color:var(--accent);min-height:56px}
+.sum-toggle b{color:var(--fg);font-size:17px;font-variant-numeric:tabular-nums}
+.sum-toggle svg{transition:transform .2s;margin-left:6px;vertical-align:middle}
+.sum-toggle[aria-expanded="true"] svg{transform:rotate(180deg)}
+.sum{background:var(--bg2);border-bottom:1px solid var(--border);padding:4px clamp(16px,4vw,48px) 20px}
+.line{display:grid;grid-template-columns:56px 1fr auto;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)}
+.thumb{position:relative;width:56px;height:56px;border-radius:10px;background:var(--card);border:1px solid var(--border);display:grid;place-items:center}
+.thumb i{display:block;width:40%;height:62%;border-radius:4px 4px 5px 5px;background:#fff;box-shadow:0 4px 8px -4px rgba(15,42,74,.4);border-top:5px solid #0F2A4A}
+.thumb .q{position:absolute;top:-7px;right:-7px;min-width:20px;height:20px;border-radius:99px;background:var(--mid);color:var(--bg);font-size:11px;font-weight:700;display:grid;place-items:center;padding:0 5px}
+.line-n{font-size:14px;font-weight:600;line-height:1.3}
+.line-n small{display:block;font-weight:400;color:var(--mid);font-size:12px}
+.line-p{font-size:14px;font-weight:600;font-variant-numeric:tabular-nums}
+.disc{display:flex;gap:8px;padding-block:16px;border-bottom:1px solid var(--border)}
+.disc .field{flex:1}
+.disc .btn{padding-inline:18px;min-height:50px}
+.disc-msg{font-size:12px;margin-top:-8px;padding-bottom:10px}
+.tot{display:grid;gap:8px;padding-top:14px;font-size:14px}
+.tot div{display:flex;justify-content:space-between;color:var(--mid);font-variant-numeric:tabular-nums}
+.tot .grand{color:var(--fg);font-weight:700;font-size:18px;padding-top:8px;border-top:1px solid var(--border);margin-top:4px}
+.tot .grand small{font-weight:400;font-size:12px;color:var(--mid);margin-right:6px}
+.tot .save{color:var(--ok)}
+
+/* sticky pay bar (mobile) */
+.paybar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--bg);border-top:1px solid var(--border);padding:12px clamp(16px,4vw,48px) calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:14px;align-items:center}
+.paybar div{flex:1;min-width:0}
+.paybar small{display:block;font-size:12px;color:var(--mid)}
+.paybar b{font-size:18px;font-variant-numeric:tabular-nums}
+.paybar .btn{flex-shrink:0;padding-inline:22px}
+.inline-cta{display:none}
+.empty{padding-block:72px 120px;text-align:center}
+.empty h1{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:44px;margin:0 0 10px}
+.empty p{color:var(--mid);margin:0 0 24px}
+
+@media (min-width:960px){
+  .co{grid-template-columns:1fr 420px;gap:64px;padding-bottom:72px;padding-inline:clamp(16px,4vw,48px)!important;max-width:1240px;margin:0 auto}
+  .co-main{order:1;padding-inline:0!important}
+  .sum{order:2}
+  .co-main{padding-block:40px 40px}
+  .co h1{font-size:52px}
+  .sum-toggle{display:none}
+  .sum{display:block!important;position:sticky;top:88px;align-self:start;margin-top:40px;border:1px solid var(--border);border-radius:18px;padding:8px 24px 24px}
+  .paybar{display:none}
+  .inline-cta{display:flex}
+}
+</style>
+</head>
+<body>
+<header class="hdr"><div class="hdr-in wrap">
+  <a class="back" href="/#shop">← Shop</a>
+  <a class="logo" href="/">Forma</a>
+  <span class="hdr-r lock"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Secure</span>
+</div></header>
+
+<div id="emptyState" class="empty wrap" hidden>
+  <h1>Your bag is empty</h1>
+  <p>Add a few things and come back to check out.</p>
+  <a class="btn btn-dark" href="/#shop">Back to the shop</a>
+</div>
+
+<div id="checkout" hidden>
+  <button class="sum-toggle" id="sumToggle" aria-expanded="false" aria-controls="summary" onclick="toggleSum()">
+    <span>Show order summary <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 4l4 4 4-4"/></svg></span>
+    <b id="toggleTotal">£0.00</b>
+  </button>
+
+  <div class="co wrap" style="padding-inline:0">
+    <aside class="sum" id="summary" hidden>
+      <div id="lines"></div>
+      <div class="disc">
+        <div class="field"><label for="code" class="sr" style="position:absolute;left:-9999px">Discount code</label><input id="code" placeholder="Discount code" autocomplete="off" autocapitalize="characters"></div>
+        <button class="btn btn-ghost" type="button" onclick="applyCode()">Apply</button>
+      </div>
+      <div class="disc-msg" id="discMsg" hidden></div>
+      <div class="tot">
+        <div><span>Subtotal</span><span id="tSub">£0.00</span></div>
+        <div class="save" id="tDiscRow" hidden><span id="tDiscLabel">Discount</span><span id="tDisc">−£0.00</span></div>
+        <div><span>Delivery</span><span id="tShip">£0.00</span></div>
+        <div class="grand"><span>Total</span><span><small>GBP</small><span id="tTotal">£0.00</span></span></div>
+      </div>
+    </aside>
+
+    <main class="co-main wrap">
+      <span class="label" style="color:var(--accent)">Checkout</span>
+      <h1>Complete your order</h1>
+      <form id="coForm" novalidate>
+        <section class="step">
+          <div class="step-h"><h2><i>01</i>Contact</h2></div>
+          <div class="stack">
+            <div class="field"><label for="email">Email</label><input id="email" type="email" inputmode="email" autocomplete="email" required><span class="err">Enter a valid email address</span></div>
+            <label class="check"><input type="checkbox" id="optin" checked> Email me new drops and offers. Unsubscribe any time.</label>
+          </div>
+        </section>
+
+        <section class="step">
+          <div class="step-h"><h2><i>02</i>Delivery address</h2></div>
+          <div class="stack">
+            <div class="row two">
+              <div class="field"><label for="fn">First name</label><input id="fn" autocomplete="given-name" required><span class="err">Required</span></div>
+              <div class="field"><label for="ln">Last name</label><input id="ln" autocomplete="family-name" required><span class="err">Required</span></div>
+            </div>
+            <div class="field"><label for="a1">Address</label><input id="a1" autocomplete="address-line1" required><span class="err">Required</span></div>
+            <div class="field"><label for="a2">Flat, suite, etc. (optional)</label><input id="a2" autocomplete="address-line2"></div>
+            <div class="row two">
+              <div class="field"><label for="city">Town or city</label><input id="city" autocomplete="address-level2" required><span class="err">Required</span></div>
+              <div class="field"><label for="pc">Postcode</label><input id="pc" autocomplete="postal-code" autocapitalize="characters" required><span class="err">Enter a valid UK postcode</span></div>
+            </div>
+            <div class="field"><label for="tel">Phone (optional, for delivery updates)</label><input id="tel" type="tel" inputmode="tel" autocomplete="tel"></div>
+            <div class="field"><label>Country</label><input value="United Kingdom" disabled></div>
+          </div>
+        </section>
+
+        <section class="step">
+          <div class="step-h"><h2><i>03</i>Delivery method</h2></div>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="ship" value="t48" checked onchange="totals()"><div><b>Royal Mail Tracked 48</b><span>2 to 3 working days</span></div><em id="t48p">£3.95</em></label>
+            <label class="opt"><input type="radio" name="ship" value="t24" onchange="totals()"><div><b>Royal Mail Tracked 24</b><span>1 to 2 working days</span></div><em>£5.95</em></label>
+          </div>
+        </section>
+
+        <section class="step" id="payStep">
+          <div class="step-h"><h2><i>04</i>Payment</h2></div>
+          <div id="payArea" class="pay-box"><b>Payment opens here</b>Fill in your details above, then tap Continue to pay.</div>
+          <div class="trust"><span>Encrypted payment</span><span>30-day returns</span><span>Third-party tested</span></div>
+          <p style="font-size:12px;color:var(--light);margin:16px 0 0">By placing your order you agree to our <a href="/terms">Terms of sale</a> and <a href="/privacy">Privacy policy</a>.</p>
+        </section>
+
+        <div class="inline-cta"><button class="btn btn-dark btn-block" type="submit" id="ctaDesk">Continue to pay</button></div>
+      </form>
+    </main>
+  </div>
+
+  <div class="paybar">
+    <div><small>Total</small><b id="barTotal">£0.00</b></div>
+    <button class="btn btn-dark" type="submit" form="coForm" id="ctaMob">Continue to pay</button>
+  </div>
+</div>
+
+<script>
+var WHOP_CHECKOUT_URL = ''; // paste payment link here
+var FREE_OVER = 40, SHIP = {t48:3.95, t24:5.95};
+var CODES = {WELCOME10:{pct:10,label:'WELCOME10 (10% off)'}};
+var items=[], discount=null;
+function money(n){return '£'+n.toFixed(2)}
+try{items=(JSON.parse(localStorage.getItem('forma_cart')||'{}').items||[]).filter(function(i){return i.qty>0})}catch(e){}
+if(!items.length){document.getElementById('emptyState').hidden=false}
+else{
+  document.getElementById('checkout').hidden=false;
+  document.getElementById('lines').innerHTML=items.map(function(i){return '<div class="line"><div class="thumb"><i></i><span class="q">'+i.qty+'</span></div><div class="line-n">'+i.name+'<small>'+(i.size||'')+'</small></div><div class="line-p">'+money(i.price*i.qty)+'</div></div>'}).join('');
+  if(window.matchMedia('(min-width:960px)').matches)document.getElementById('summary').hidden=false;
+  totals();
+}
+function sub(){return items.reduce(function(s,i){return s+i.price*i.qty},0)}
+function totals(){
+  var s=sub(),d=discount?Math.round(s*discount.pct)/100:0;
+  var m=(document.querySelector('input[name=ship]:checked')||{}).value||'t48';
+  var ship=(m==='t48'&&s-d>=FREE_OVER)?0:SHIP[m];
+  document.getElementById('t48p').textContent=(s-d>=FREE_OVER)?'Free':'£3.95';
+  var t=s-d+ship;
+  document.getElementById('tSub').textContent=money(s);
+  document.getElementById('tDiscRow').hidden=!discount;
+  if(discount){document.getElementById('tDisc').textContent='−'+money(d);document.getElementById('tDiscLabel').textContent=discount.label}
+  document.getElementById('tShip').textContent=ship?money(ship):'Free';
+  ['tTotal','toggleTotal','barTotal'].forEach(function(id){document.getElementById(id).textContent=money(t)});
+  return t;
+}
+function applyCode(){
+  var c=document.getElementById('code').value.trim().toUpperCase(),m=document.getElementById('discMsg');m.hidden=false;
+  if(CODES[c]){discount=CODES[c];m.style.color='var(--ok)';m.textContent='Code applied.'}
+  else{discount=null;m.style.color='var(--err)';m.textContent='That code is not valid.'}
+  totals();
+}
+function toggleSum(){var b=document.getElementById('sumToggle'),s=document.getElementById('summary'),o=b.getAttribute('aria-expanded')==='true';
+  b.setAttribute('aria-expanded',!o);s.hidden=o;b.querySelector('span').firstChild.textContent=o?'Show order summary ':'Hide order summary '}
+var PC=/^[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}$/i;
+document.getElementById('coForm').addEventListener('submit',function(e){
+  e.preventDefault();var first=null;
+  this.querySelectorAll('[required]').forEach(function(i){var v=i.value.trim(),bad=!v||(i.type==='email'&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v))||(i.id==='pc'&&!PC.test(v));
+    i.closest('.field').classList.toggle('bad',bad);if(bad&&!first)first=i});
+  if(first){first.focus();first.scrollIntoView({behavior:'smooth',block:'center'});return}
+  var order={items:items,email:document.getElementById('email').value.trim(),optin:document.getElementById('optin').checked,
+    address:{first:fn.value,last:ln.value,line1:a1.value,line2:a2.value,city:city.value,postcode:pc.value.toUpperCase(),phone:tel.value},
+    shipping:document.querySelector('input[name=ship]:checked').value,discount:discount&&document.getElementById('code').value.trim().toUpperCase(),total:totals()};
+  try{sessionStorage.setItem('forma_order',JSON.stringify(order))}catch(err){}
+  var pa=document.getElementById('payArea');
+  if(WHOP_CHECKOUT_URL){pa.className='';pa.innerHTML='<iframe class="pay-frame" src="'+WHOP_CHECKOUT_URL+'" title="Secure payment" allow="payment"></iframe>'}
+  else{pa.innerHTML='<b>Payment provider not connected yet</b>Your details are saved. This is where the secure card payment will appear once checkout is linked up.'}
+  document.getElementById('payStep').scrollIntoView({behavior:'smooth',block:'start'});
+});
+document.querySelectorAll('[required]').forEach(function(i){i.addEventListener('input',function(){i.closest('.field').classList.remove('bad')})});
+</script>
+</body>
+</html>
